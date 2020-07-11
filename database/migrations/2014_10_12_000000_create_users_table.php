@@ -14,7 +14,8 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
+            $table->id(); # 每張表都會有
+
             $table->string('role'); # 角色
             $table->string('chinese_name'); # 中文名稱
             $table->string('english_name'); # 英文名稱
@@ -31,8 +32,9 @@ class CreateUsersTable extends Migration
             $table->string('other'); # 備註
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
+            
+            $table->rememberToken(); # users系統保留
+            $table->timestamps(); # 所有的表都會有 create_time, update_time
         });
     }
 
