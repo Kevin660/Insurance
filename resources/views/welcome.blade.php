@@ -9,7 +9,7 @@
     <!-- CSS only -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- JS, Popper.js, and jQuery -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
         crossorigin="anonymous"></script>
@@ -17,8 +17,9 @@
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
         crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100&display=swap" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
-    <link rel="stylesheet" href="icofont/icofont.min.css">
+    <link href="/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="/storage/icofont/icofont.min.css">
+    <script src="/js/main.js"></script>
 </head>
 
 <body>
@@ -55,7 +56,7 @@
 
                     <div class="carousel-inner" role="listbox">
 
-                        <div class="carousel-item active" style="background-image: url(/img/6.jpg)">
+                        <div class="carousel-item active" style="background-image: url(/storage/img/6.jpg)">
                             <div class="carousel-container">
                                 <div class="container">
                                     <h2>We are professional</h2>
@@ -68,7 +69,7 @@
                             </div>
                         </div>
 
-                        <div class="carousel-item" style="background-image: url(/img/car.jpg)">
+                        <div class="carousel-item" style="background-image: url(/storage/img/car.jpg)">
                             <div class="carousel-container">
                                 <div class="container">
                                     <h2>We are professional</h2>
@@ -101,7 +102,7 @@
     <div class="container-fluid">
         <div class="row d-flex justify-content-center">
             <div class="col-12 col-md-5 p-3 d-flex flex-column justify-content-center align-items-center">
-                <img class="img-fluid rounded " src="img/c1.jpg" alt="">
+                <img class="img-fluid rounded " src="/storage/img/c1.jpg" alt="">
             </div>
             <div class="col-12 col-md-5 p-3 d-flex flex-column justify-content-center align-items-center">
 
@@ -115,7 +116,7 @@
 
         <div class="row d-flex justify-content-center">
             <div class="col-12 col-md-5 p-3 d-flex flex-column justify-content-center align-items-center order-md-2">
-                <img class="img-fluid rounded " src="img/c1.jpg" alt="">
+                <img class="img-fluid rounded " src="/storage/img/c1.jpg" alt="">
             </div>
             <div class="col-12 col-md-5 p-3 d-flex flex-column justify-content-center align-items-center order-md-1">
 
@@ -129,7 +130,7 @@
 
         <div class="row d-flex justify-content-center">
             <div class="col-12 col-md-5 p-3 d-flex flex-column justify-content-center align-items-center">
-                <img class="img-fluid rounded " src="img/c1.jpg" alt="">
+                <img class="img-fluid rounded " src="/storage/img/c1.jpg" alt="">
             </div>
             <div class="col-12 col-md-5 p-3 d-flex flex-column justify-content-center align-items-center">
 
@@ -177,7 +178,7 @@
 
     </footer>
 
-    <script src="main.js"></script>
+    
 
 </body>
 
