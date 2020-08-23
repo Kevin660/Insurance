@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>登入</title>
+    <title>註冊</title>
 
 <!-- CSS only -->
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -24,7 +24,7 @@
 
 <body>
 
-    <header id="header" class="fixed-top header-transparent">
+    <header id="header" class="fixed-top">
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-xl-11 d-flex align-items-center">
@@ -35,34 +35,31 @@
     </header>
 
     <div class="d-flex justify-content-center align-items-center h-100">
-        <div id="big" class="row d-flex justify-content-center align-items-center h-100">
-
-            <div class=" window col rounded border p-3 m-3">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class=" col rounded border p-3 m-3">
                 <div class="d-flex flex-column justify-content-center h-100">
                     <h5 class="mx-auto">註冊</h5>
                     <div class="d-flex flex-column justify-content-center h-100">
-                        <button class="btn border m-1">
-                            我是保戶
-                        </button>
+                        <form class="d-flex flex-column justify-content-center  ">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="mt-2">密碼</label>
+                                <input type="password" class="form-control" id="password">
 
-                        <button class="btn border m-1">
-                            我是業務員
-                        </button>
+                                <label for="password_confirm" class="mt-2">確認密碼</label>
+                                <input type="password" class="form-control" id="password_confirm">
+                            </div>
+                            <div class="form-check mx-auto">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">同意 <a href="#">使用條款</a> </label>
+                            </div>
+                            <button type="submit" class="btn btn-submit mt-3">註冊</button>
+                        </form>
                     </div>
 
-                </div>
-            </div>
-
-            <div class="window col rounded border p-3">
-                <div class="d-flex flex-column justify-content-center h-100">
-
-                    <h5 class="mx-auto">登入</h5>
-                    <form class="d-flex flex-column justify-content-center  ">
-                        <label for="id">帳號</label>
-                        <input type="email" class="form-control" id="id">
-                        <label for="pw" class="mt-2">密碼</label>
-                        <input type="password" class="form-control" id="pw">
-                    </form>
                 </div>
             </div>
         </div>
