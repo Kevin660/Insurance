@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>登入</title>
 
-<!-- CSS only -->
-<link href="{{ asset('css/app.css') }}" rel="stylesheet">
-<!-- JS, Popper.js, and jQuery -->
-<script src="{{ asset('js/app.js') }}"></script>   
+    <!-- CSS only -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="{{ asset('js/app.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
         crossorigin="anonymous"></script>
@@ -41,11 +41,11 @@
                 <div class="d-flex flex-column justify-content-center h-100">
                     <h5 class="mx-auto">註冊</h5>
                     <div class="d-flex flex-column justify-content-center h-100">
-                        <button class="btn border m-1">
+                        <button class="btn m-1 flex-grow btn-outline-insurance">
                             我是保戶
                         </button>
 
-                        <button class="btn border m-1">
+                        <button class="btn m-1 flex-grow btn-outline-insurance">
                             我是業務員
                         </button>
                     </div>
@@ -57,11 +57,26 @@
                 <div class="d-flex flex-column justify-content-center h-100">
 
                     <h5 class="mx-auto">登入</h5>
-                    <form class="d-flex flex-column justify-content-center  ">
-                        <label for="id">帳號</label>
-                        <input type="email" class="form-control" id="id">
-                        <label for="pw" class="mt-2">密碼</label>
-                        <input type="password" class="form-control" id="pw">
+                    <form method="POST" action="" class="d-flex flex-column justify-content-center  ">
+                        @csrf
+                        <label for="email">電子信箱</label>
+                        <input name="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                            id="email">
+                        <label for="password" class="mt-2">密碼</label>
+                        <input name="password" type="password"
+                            class="form-control @error('password') is-invalid @enderror" id="password">
+
+                        @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                        @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                        <button type="submit" class="btn btn-submit mt-3">登入</button>
                     </form>
                 </div>
             </div>

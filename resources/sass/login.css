@@ -4,17 +4,26 @@ html,body {
   font-family: "Open Sans", sans-serif;
   }
 
-   .window{
-     height: 250px;
+   .window {
+     height: 320px;
      width: 300px;
      box-sizing: border-box;
      margin:10px;
    }
    
-   #big {
-     width:600px;
-   }
-   
+    .flex-grow {
+      flex-grow: 1
+    }
+
+    .btn-outline-insurance {
+      transition: 0.5s;
+      border-color: #dee2e6;
+    }
+
+    .btn-outline-insurance:hover {
+    border-color: #28a745;
+    }
+
    .btn-submit {
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
@@ -22,12 +31,12 @@ html,body {
     letter-spacing: 1px;
     display: inline-block;
     padding: 8px 32px;
-    border-radius: 50px;
     transition: 0.5s;
     box-sizing: border-box;
     margin: 10px;
     color: #28a745;
     background: #fff;
+    border-radius: 50px;
     border: 2px dashed ;
   }
   

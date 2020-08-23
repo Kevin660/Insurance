@@ -44,81 +44,168 @@
                         <div class="d-flex flex-column justify-content-center h-100">
 
 
-                            <form class="d-flex flex-column justify-content-center  ">
-
+                            <form method="POST" action="" class="d-flex flex-column justify-content-center  ">
+                                @csrf
                                 <div class="form-row">
                                     <div class="form-group col">
                                         <label for="chinese_name">中文名稱</label>
-                                        <input type="text" class="form-control" id="chinese_name">
+                                        <input name="chinese_name" type="text"
+                                            class="form-control @error('chinese_name') is-invalid @enderror"
+                                            id="chinese_name">
+                                        @error('chinese_name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
                                     </div>
                                     <div class="form-group col">
-                                        <label for="english_name">英文名稱</label>
-                                        <input type="text" class="form-control" id="english_name">
+                                        <label for="email">Email</label>
+                                        <input name="email" type="email"
+                                            class="form-control @error('email') is-invalid @enderror" id="email">
+                                        @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-9">
                                         <label for="birthday">生日</label>
-                                        <input type="date" class="form-control" id="birthday">
+                                        <input name="birthday" type="date"
+                                            class="form-control @error('birthday') is-invalid @enderror" id="birthday">
+                                        @error('birthday')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
                                     </div>
                                     <div class="form-group col-3">
                                         <label for="gender"">性別</label>
-                                    <select class=" form-control" id="gender">
-                                            <option>男</option>
-                                            <option>女</option>
+                                    <select name=" gender" class=" form-control" id="gender">
+                                            <option value="male">男</option>
+                                            <option value="female">女</option>
                                             </select>
                                     </div>
                                 </div>
+
                                 <div class="form-row">
                                     <div class="form-group col">
                                         <label for="number_home">聯絡電話(市話)</label>
-                                        <input type="text" class="form-control" id="number_home">
+                                        <input name="number_home" type="text"
+                                            class="form-control @error('number_home') is-invalid @enderror"
+                                            id="number_home">
+                                        @error('number_home')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
                                     </div>
                                     <div class="form-group col">
                                         <label for="number_cellphone">聯絡電話(手機)</label>
-                                        <input type="text" class="form-control" id="number_cellphone">
+                                        <input name="number_cellphone" type="text"
+                                            class="form-control @error('number_cellphone') is-invalid @enderror"
+                                            id="number_cellphone">
+                                        @error('number_cellphone')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="email">
-                                </div>
-                                <div class="form-group">
                                     <label for="address">地址</label>
-                                    <input type="text" class="form-control" id="address">
+                                    <input name="address" type="text"
+                                        class="form-control @error('address') is-invalid @enderror" id="address">
+                                    @error('address')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="serve_area">服務地區</label>
-                                    <input type="text" class="form-control" id="serve_area">
+                                    <input name="serve_area" type="text"
+                                        class="form-control @error('serve_area') is-invalid @enderror" id="serve_area">
+                                    @error('serve_area')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="service_item">服務項目</label>
-                                    <input type="text" class="form-control" id="service_item">
+                                    <input name="service_item" type="text"
+                                        class="form-control @error('service_item') is-invalid @enderror"
+                                        id="service_item">
+                                    @error('service_item')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="service_experience">服務資歷</label>
-                                    <input type="text" class="form-control" id="service_experience">
+                                    <input name="service_experience" type="text"
+                                        class="form-control @error('service_experience') is-invalid @enderror"
+                                        id="service_experience">
+                                    @error('service_experience')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="license">相關證照</label>
-                                    <input type="text" class="form-control" id="license">
+                                    <input name="license" type="text"
+                                        class="form-control @error('license') is-invalid @enderror" id="license">
+                                    @error('license')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="other">備註</label>
-                                    <input type="text" class="form-control" id="other">
+                                    <input name="other" type="text"
+                                        class="form-control @error('other') is-invalid @enderror" id="other">
+                                    @error('other')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="password" class="mt-2">密碼</label>
-                                    <input type="password" class="form-control" id="password">
+                                    <input name="password" type="password"
+                                        class="form-control @error('password') is-invalid @enderror" id="password">
+                                    @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
 
                                     <label for="password_confirm" class="mt-2">確認密碼</label>
-                                    <input type="password" class="form-control" id="password_confirm">
+                                    <input name="password_confirm" type="password"
+                                        class="form-control @error('password_confirm') is-invalid @enderror"
+                                        id="password_confirm">
+                                    @error('password_confirm')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                                 <div class="form-check mx-auto">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">同意 <a href="#">使用條款</a> </label>
+                                    <input name="terms" type="checkbox"
+                                        class="form-check-input @error('terms') is-invalid @enderror" id="terms">
+                                    <label class="form-check-label" for="terms">同意 <a href="#">使用條款</a> </label>
                                 </div>
+                                @error('terms')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                                 <button type="submit" class="btn btn-submit mt-3">註冊</button>
                             </form>
 
