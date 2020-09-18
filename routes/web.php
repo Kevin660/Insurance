@@ -17,8 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
+Route::middleware(['auth', 'verified'])->group(function(){
+    Route::get('/home', 'HomeController@index')->name('home');
+});
+
+
+<<<<<<< HEAD
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/login', function (){
     return view('login');
@@ -29,3 +35,5 @@ Route::get('/register_customer', function (){
 Route::get('/register_sales', function (){
     return view('register_sales');
 });
+=======
+>>>>>>> remotes/origin/kevin
