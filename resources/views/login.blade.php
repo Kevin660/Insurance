@@ -17,7 +17,7 @@
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
         crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100&display=swap" rel="stylesheet">
-    <link href="/css/login.css" rel="stylesheet">
+    <link href="{{ asset('css/login.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="icofont/icofont.min.css">
     <!-- <script src="main.js"></script> -->
 </head>
@@ -28,7 +28,7 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-xl-11 d-flex align-items-center">
-                    <h1 class="logo mr-auto"><a href="index.html">保險媒合平台</a></h1>
+                    <h1 class="logo mr-auto"><a href="/">保險媒合平台</a></h1>
                 </div>
             </div>
         </div>
@@ -41,13 +41,12 @@
                 <div class="d-flex flex-column justify-content-center h-100">
                     <h5 class="mx-auto">註冊</h5>
                     <div class="d-flex flex-column justify-content-center h-100">
-                        <button class="btn m-1 flex-grow btn-outline-insurance">
-                            我是保戶
-                        </button>
-
-                        <button class="btn m-1 flex-grow btn-outline-insurance">
-                            我是業務員
-                        </button>
+                            <button onclick="window.location.href = '/register_customer'" class="btn m-1 flex-grow btn-outline-insurance">
+                                我是保戶
+                            </button>
+                            <button onclick="window.location.href = '/register_sales'" class="btn m-1 flex-grow btn-outline-insurance">
+                                我是業務員
+                            </button>
                     </div>
 
                 </div>

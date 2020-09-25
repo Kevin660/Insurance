@@ -28,7 +28,7 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-xl-11 d-flex align-items-center">
-                    <h1 class="logo mr-auto"><a href="index.html">保險媒合平台</a></h1>
+                    <h1 class="logo mr-auto"><a href="/">保險媒合平台</a></h1>
                 </div>
             </div>
         </div>

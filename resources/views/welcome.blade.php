@@ -29,7 +29,7 @@
             <div class="row justify-content-center">
                 <div class="col-xl-11 d-flex align-items-center">
 
-                    <h1 class="logo mr-auto"><a href="index.html">保險媒合平台</a></h1>
+                    <h1 class="logo mr-auto"><a href="/">保險媒合平台</a></h1>
 
 
                     <nav class="nav-menu d-none d-lg-block">
@@ -38,7 +38,7 @@
                             <li><a href="#about">找業務員</a></li>
                             <li><a href="#services">車禍處理專區</a></li>
                             <li><a href="#portfolio">討論區</a></li>
-                            <li><a href="#team">登入</a></li>
+                            <li><a href="/login">登入</a></li>
                         </ul>
                     </nav>
 
