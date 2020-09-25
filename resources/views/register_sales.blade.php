@@ -44,7 +44,7 @@
                         <div class="d-flex flex-column justify-content-center h-100">
 
 
-                            <form method="POST" action="" class="d-flex flex-column justify-content-center  ">
+                            <form method="POST" action="{{ route('register') }}" class="d-flex flex-column justify-content-center  ">
                                 @csrf
                                 <div class="form-row">
                                     <div class="form-group col">
@@ -113,7 +113,6 @@
                                         @enderror
                                     </div>
                                 </div>
-
                                 <div class="form-group">
                                     <label for="address">地址</label>
                                     <input name="address" type="text"
@@ -124,6 +123,27 @@
                                     </span>
                                     @enderror
                                 </div>
+                                <div class="form-group">
+                                    <label for="password" class="mt-2">密碼</label>
+                                    <input name="password" type="password"
+                                        class="form-control @error('password') is-invalid @enderror" id="password">
+                                    @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+
+                                    <label for="password_confirm" class="mt-2">確認密碼</label>
+                                    <input name="password_confirm" type="password"
+                                        class="form-control @error('password_confirm') is-invalid @enderror"
+                                        id="password_confirm">
+                                    @error('password_confirm')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                                
                                 <div class="form-group">
                                     <label for="serve_area">服務地區</label>
                                     <input name="serve_area" type="text"
@@ -176,26 +196,7 @@
                                     </span>
                                     @enderror
                                 </div>
-                                <div class="form-group">
-                                    <label for="password" class="mt-2">密碼</label>
-                                    <input name="password" type="password"
-                                        class="form-control @error('password') is-invalid @enderror" id="password">
-                                    @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-
-                                    <label for="password_confirm" class="mt-2">確認密碼</label>
-                                    <input name="password_confirm" type="password"
-                                        class="form-control @error('password_confirm') is-invalid @enderror"
-                                        id="password_confirm">
-                                    @error('password_confirm')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
+                                
                                 <div class="form-check mx-auto">
                                     <input name="terms" type="checkbox"
                                         class="form-check-input @error('terms') is-invalid @enderror" id="terms">
