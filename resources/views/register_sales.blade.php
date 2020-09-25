@@ -43,9 +43,10 @@
                         <h5 class="mx-auto">註冊</h5>
                         <div class="d-flex flex-column justify-content-center h-100">
 
-
+                            {{ $errors }}
                             <form method="POST" action="{{ route('register') }}" class="d-flex flex-column justify-content-center  ">
                                 @csrf
+                                <input name="role" type="hidden" value="1">
                                 <div class="form-row">
                                     <div class="form-group col">
                                         <label for="chinese_name">中文名稱</label>
@@ -83,8 +84,8 @@
                                     <div class="form-group col-3">
                                         <label for="gender"">性別</label>
                                     <select name=" gender" class=" form-control" id="gender">
-                                            <option value="male">男</option>
-                                            <option value="female">女</option>
+                                            <option value="1">男</option>
+                                            <option value="2">女</option>
                                             </select>
                                     </div>
                                 </div>
@@ -134,10 +135,10 @@
                                     @enderror
 
                                     <label for="password_confirm" class="mt-2">確認密碼</label>
-                                    <input name="password_confirm" type="password"
-                                        class="form-control @error('password_confirm') is-invalid @enderror"
+                                    <input name="password_confirmation" type="password"
+                                        class="form-control @error('password_confirmation') is-invalid @enderror"
                                         id="password_confirm">
-                                    @error('password_confirm')
+                                    @error('password_confirmation')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -155,22 +156,22 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="service_item">服務項目</label>
-                                    <input name="service_item" type="text"
-                                        class="form-control @error('service_item') is-invalid @enderror"
-                                        id="service_item">
-                                    @error('service_item')
+                                    <label for="serve_item">服務項目</label>
+                                    <input name="serve_item" type="text"
+                                        class="form-control @error('serve_item') is-invalid @enderror"
+                                        id="serve_item">
+                                    @error('serve_item')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="service_experience">服務資歷</label>
-                                    <input name="service_experience" type="text"
-                                        class="form-control @error('service_experience') is-invalid @enderror"
-                                        id="service_experience">
-                                    @error('service_experience')
+                                    <label for="serve_experience">服務資歷</label>
+                                    <input name="serve_experience" type="text"
+                                        class="form-control @error('serve_experience') is-invalid @enderror"
+                                        id="serve_experience">
+                                    @error('serve_experience')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

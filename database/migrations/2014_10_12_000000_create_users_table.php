@@ -22,12 +22,12 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('gender'); # 性別
             $table->string('address'); # 地址
             $table->string('email')->unique(); # 電子信箱
-            $table->string('number_home'); # 連絡電話(市話)
+            $table->string('number_home')->nullable(); # 連絡電話(市話)
             $table->string('number_cellphone'); # 連絡電話(手機)
-            $table->string('serve_area'); # 服務地區
-            $table->string('serve_item'); # 服務項目
-            $table->integer('serve_experience'); # 服務資歷
-            $table->string('license')->nullable();; # 相關證照
+            $table->string('serve_area')->nullable(); # 服務地區
+            $table->string('serve_item')->nullable(); # 服務項目
+            $table->integer('serve_experience')->nullable(); # 服務資歷
+            $table->string('license')->nullable(); # 相關證照
             $table->string('other')->nullable(); # 備註
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
