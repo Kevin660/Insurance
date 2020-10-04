@@ -22,26 +22,26 @@ Auth::routes(['verify' => true]);
 Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/home', 'HomeController@index')->name('home');
     
-    Route::prefix('questions')->group(function () {
-        Route::get('create', 'QuestionController@create');
-        Route::post('store', 'QuestionController@store');
+    Route::prefix('questions')->group(function () {  // 需登入
+        Route::get('create', 'QuestionController@create');  //   到新增頁面
+        Route::post('store', 'QuestionController@store');   //   儲存新增頁面的內容
         Route::get('indexSelf', 'QuestionController@indexSelf'); // with order param
-        Route::get('{question}/edit', 'QuestionController@edit');
-        Route::post('{question}', 'QuestionController@update');
-        Route::delete('{question}', 'QuestionController@destroy');
+        Route::get('{question}/edit', 'QuestionController@edit'); // 到編輯頁面
+        Route::post('{question}', 'QuestionController@update');   // 更新編輯頁面的內容
+        Route::delete('{question}', 'QuestionController@destroy'); // 刪除一筆問題
 
-        Route::post('{question}/voteUp', 'QuestionController@voteUp');
-        Route::post('{question}/voteDown', 'QuestionController@voteDown');
-        Route::post('{question}/voteCancel', 'QuestionController@voteCancel');
+        Route::post('{question}/voteUp', 'QuestionController@voteUp');  // 投票+1
+        Route::post('{question}/voteDown', 'QuestionController@voteDown'); // 投票-1
+        Route::post('{question}/voteCancel', 'QuestionController@voteCancel'); // 取消投票
         
-        Route::post('{question}/answer', 'QuestionController@answer');
-        Route::post('{question}/accept/{{answer}}', 'QuestionController@accept');
+        Route::post('{question}/answer', 'QuestionController@answer');  // 新增答案
+        Route::post('{question}/accept/{{answer}}', 'QuestionController@accept'); // 設為正解
     });
-    
 });
-Route::prefix('questions')->group(function () {
+
+Route::prefix('questions')->group(function () {  // 無須登入
     Route::get('index', 'QuestionController@index');  // with order param
-    Route::get('{question}', 'QuestionController@show');
+    Route::get('{question}', 'QuestionController@show');  // 顯示單筆問題
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
