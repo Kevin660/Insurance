@@ -24,16 +24,22 @@ Route::middleware(['auth', 'verified'])->group(function(){
 });
 
 
-<<<<<<< HEAD
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/login', function (){
     return view('login');
-});
+})->name("login");
 Route::get('/register_customer', function (){
     return view('register_customer');
 });
 Route::get('/register_sales', function (){
     return view('register_sales');
 });
-=======
->>>>>>> remotes/origin/kevin
+Route::get('/forum', function (){
+    return view('forum');
+});
+Route::get('/forum_view', function (){
+    return view('forum_view');
+});
+Route::get('/forum_post', function (){
+    return view('forum_post');
+});
