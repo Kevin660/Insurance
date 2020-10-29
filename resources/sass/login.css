@@ -1,0 +1,125 @@
+html,body {
+  height: 100%;
+  background: #fff;
+  font-family: "Open Sans", sans-serif;
+  }
+
+   .window {
+     height: 320px;
+     width: 300px;
+     box-sizing: border-box;
+     margin:10px;
+   }
+   
+    .flex-grow {
+      flex-grow: 1
+    }
+
+    .btn-outline-insurance {
+      transition: 0.5s;
+      border-color: #dee2e6;
+    }
+
+    .btn-outline-insurance:hover {
+    border-color: #28a745;
+    }
+
+   .btn-submit {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 8px 32px;
+    transition: 0.5s;
+    box-sizing: border-box;
+    margin: 10px;
+    color: #28a745;
+    background: #fff;
+    border-radius: 50px;
+    border: 2px dashed ;
+  }
+  
+  .btn-submit:hover{
+    border: 2px solid ;
+    border-color: #28a745;
+    background: #28a745;
+    color: #fff;
+  }
+
+   button{
+     box-sizing: border-box;
+   }
+   
+   
+     
+   h1, h2, h3, h4, h5, h6 {
+       font-weight: 400;
+       margin: 0 0 20px 0;
+       padding: 0;
+   }
+     
+     
+     /* header */
+     #header a {
+       color: #ffffffc9;
+       transition: 0.5s;
+       
+     }
+     #header a:hover, a:active, a:focus {
+       color: #28a745;
+       outline: none;
+       text-decoration: none;
+     }
+     #header {
+       transition: all 0.5s;
+       z-index: 997;
+       padding: 26px 0;
+       background: rgb(255, 255, 255);
+     }
+     
+     #header.header-transparent {
+       background: transparent;
+     }
+
+     #header.fixed-top {
+      position: fixed;
+    }
+
+    #header.sticky-top {
+      position: sticky;
+    }
+    
+     #header.header-scrolled {
+       background: rgba(0, 0, 0, 0.9);
+       padding: 18px 0;
+     }
+     
+     #header .logo {
+       font-size: 34px;
+       margin: 0;
+       padding: 0;
+       line-height: 1;
+       font-family: "Montserrat", sans-serif;
+       font-weight: 700;
+       letter-spacing: 3px;
+       padding-left: 10px;
+       border-left: 4px solid #28a745;
+     }
+     
+     #header .logo a {
+       color: rgb(37, 17, 17);
+     }
+     
+     #header .logo img {
+       max-height: 40px;
+     }
+     
+     @media (max-width: 992px) {
+       #header .logo {
+         font-size: 28px;
+       }
+     }
+     /* header結束 */
+     
+     
