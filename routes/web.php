@@ -56,3 +56,6 @@ Route::get('/register_customer', function (){
 Route::get('/register_sales', function (){
     return view('register_sales');
 });
+
+Route::get('/sales/{typeId}', 'UserController@sales');
+

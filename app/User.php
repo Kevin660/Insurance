@@ -16,7 +16,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'role', 'chinese_name', 'birthday', 'gender', 'address', 'serve_area', 'email', 'number_home', 'number_cellphone', 'serve_item', 'serve_experience', 'license', 'other', 'password'
+        'role', 'img', 'company', 'chinese_name', 'birthday', 'gender', 'address', 'serve_area', 'email', 'number_home', 'number_cellphone', 'serve_item', 'serve_experience', 'license', 'introduction', 'other', 'password', 'score', 'enabled', 'email_verified_at'
     ];
 
     /**
@@ -39,5 +39,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function questions(){
         return $this->hasMany(Question::class);
+    }
+
+    public function  certifications(){
+        return $this->hasMany(Certification::class);
     }
 }
