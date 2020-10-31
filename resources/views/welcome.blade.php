@@ -24,7 +24,7 @@
             $('.btn-get-started').click(function(){
             $('html, body').animate({
                 scrollTop: $($(this).attr('href')).offset().top
-            }, 300, 'ease');
+            }, 300, 'linear');
             });
         });
     </script>
@@ -84,27 +84,27 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="carousel-item" style="background-image: url(https://images.unsplash.com/photo-1483213097419-365e22f0f258?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80)">
-                            <div class="carousel-container">
-                                <div class="container">
-                                    <h2>討論區</h2>
-                                    <p>將由專業的業務員解答您各類保險問題。</p>
-                                    <a href="#t2" class="btn-get-started">馬上體驗</a>
-                                </div>
-                            </div>
-                        </div>
                         
-
                         <div class="carousel-item" style="background-image: url(https://images.unsplash.com/photo-1597328290883-50c5787b7c7e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80)">
                             <div class="carousel-container">
                                 <div class="container">
                                     <h2>車禍處理專區</h2>
                                     <p>提供您具有保險經紀人證照的業務員，及更專業的車禍相關諮詢服務。</p>
-                                    <a href="#t3" class="btn-get-started">馬上體驗</a>
+                                    <a href="#t2" class="btn-get-started">馬上體驗</a>
                                 </div>
                             </div>
                         </div>
 
+                        <div class="carousel-item" style="background-image: url(https://images.unsplash.com/photo-1483213097419-365e22f0f258?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80)">
+                            <div class="carousel-container">
+                                <div class="container">
+                                    <h2>討論區</h2>
+                                    <p>將由專業的業務員解答您各類保險問題。</p>
+                                    <a href="#t3" class="btn-get-started">馬上體驗</a>
+                                </div>
+                            </div>
+                        </div>
+                        
                         <a class="carousel-control-prev" href="#introCarousel" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon ion-chevron-left" aria-hidden="true"></span>
                             <span class="sr-only">Previous</span>
