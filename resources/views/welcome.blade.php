@@ -32,21 +32,26 @@
 
 <body>
 
-    <header id="header" class="fixed-top header-transparent">
-        <div class="container-fluid">
-            <div class="row justify-content-center">
-                <div class="col-xl-11 d-flex align-items-center">
+    <header class="fixed-top">
+    <div id="header" class="container-fluid header-transparent">
+            <div class="col-lg-11 mx-auto">
+                <nav class="navbar navbar-expand-lg navbar-dark">
                     <h1 class="logo mr-auto"><a href="/">保險媒合平台</a></h1>
-                    <nav class="nav-menu d-none d-lg-block">
-                        <ul>
-                            <li class="active"><a href="#">風險分析</a></li>
-                            <li><a href="sales/1">找業務員</a></li>
-                            <li><a href="sales/2">車禍處理專區</a></li>
-                            <li><a href="#portfolio">討論區</a></li>
-                            <li><a href="/login">登入</a></li>
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse text-right" id="navbarNav">
+                        <ul class="navbar-nav nav-menu ml-auto">
+                            <li class="nav-item"> <a class="nav-link" href="#">風險分析</a> </li>
+                            <li class="nav-item"> <a class="nav-link" href="sales/1">找業務員</a> </li>
+                            <li class="nav-item"> <a class="nav-link" href="sales/2">車禍處理專區</a> </li>
+                            <li class="nav-item"> <a class="nav-link" href="/forum">討論區</a> </li>
+                            <li class="nav-item"> <a class="nav-link" href="/login">登入</a> </li>
                         </ul>
-                    </nav>
-                </div>
+                    </div>
+                </nav>
             </div>
         </div>
     </header>

@@ -22,26 +22,26 @@ Auth::routes(['verify' => true]);
 Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/home', 'HomeController@index')->name('home');
     
-    Route::prefix('questions')->group(function () {  // éœ€ç™»å…¥
-        Route::get('create', 'QuestionController@create');  //   åˆ°æ–°å¢žé é¢
-        Route::post('store', 'QuestionController@store');   //   å„²å­˜æ–°å¢žé é¢çš„å…§å®¹
+    Route::prefix('questions')->group(function () {  // »Ýµn¤J
+        Route::get('create', 'QuestionController@create');  //   ¨ì·s¼W­¶­±
+        Route::post('store', 'QuestionController@store');   //   Àx¦s·s¼W­¶­±ªº¤º®e
         Route::get('indexSelf', 'QuestionController@indexSelf'); // with order param
-        Route::get('{question}/edit', 'QuestionController@edit'); // åˆ°ç·¨è¼¯é é¢
-        Route::post('{question}', 'QuestionController@update');   // æ›´æ–°ç·¨è¼¯é é¢çš„å…§å®¹
-        Route::delete('{question}', 'QuestionController@destroy'); // åˆªé™¤ä¸€ç­†å•é¡Œ
+        Route::get('{question}/edit', 'QuestionController@edit'); // ¨ì½s¿è­¶­±
+        Route::post('{question}', 'QuestionController@update');   // §ó·s½s¿è­¶­±ªº¤º®e
+        Route::delete('{question}', 'QuestionController@destroy'); // §R°£¤@µ§°ÝÃD
 
-        Route::post('{question}/voteUp', 'QuestionController@voteUp');  // æŠ•ç¥¨+1
-        Route::post('{question}/voteDown', 'QuestionController@voteDown'); // æŠ•ç¥¨-1
-        Route::post('{question}/voteCancel', 'QuestionController@voteCancel'); // å–æ¶ˆæŠ•ç¥¨
+        Route::post('{question}/voteUp', 'QuestionController@voteUp');  // §ë²¼+1
+        Route::post('{question}/voteDown', 'QuestionController@voteDown'); // §ë²¼-1
+        Route::post('{question}/voteCancel', 'QuestionController@voteCancel'); // ¨ú®ø§ë²¼
         
-        Route::post('{question}/answer', 'QuestionController@answer');  // æ–°å¢žç­”æ¡ˆ
-        Route::post('{question}/accept/{{answer}}', 'QuestionController@accept'); // è¨­ç‚ºæ­£è§£
+        Route::post('{question}/answer', 'QuestionController@answer');  // ·s¼Wµª®×
+        Route::post('{question}/accept/{{answer}}', 'QuestionController@accept'); // ³]¬°¥¿¸Ñ
     });
 });
 
-Route::prefix('questions')->group(function () {  // ç„¡é ˆç™»å…¥
+Route::prefix('questions')->group(function () {  // µL¶·µn¤J
     Route::get('index', 'QuestionController@index');  // with order param
-    Route::get('{question}', 'QuestionController@show');  // é¡¯ç¤ºå–®ç­†å•é¡Œ
+    Route::get('{question}', 'QuestionController@show');  // Åã¥Ü³æµ§°ÝÃD
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -56,6 +56,12 @@ Route::get('/register_customer', function (){
 Route::get('/register_sales', function (){
     return view('register_sales');
 });
-
-Route::get('/sales/{typeId}', 'UserController@sales');
-
+Route::get('/forum', function (){
+    return view('forum');
+});
+Route::get('/forum_view', function (){
+    return view('forum_view');
+});
+Route::get('/forum_post', function (){
+    return view('forum_post');
+});
