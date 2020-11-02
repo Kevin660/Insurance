@@ -59,7 +59,6 @@ Route::get('/register_customer', function (){
 Route::get('/register_sales', function (){
     return view('register_sales');
 });
-<<<<<<< HEAD
 Route::get('/forum', function (){
     return view('forum');
 });
@@ -69,5 +68,3 @@ Route::get('/forum_view', function (){
 Route::get('/forum_post', function (){
     return view('forum_post');
 });
-=======
->>>>>>> remotes/origin/kevin
