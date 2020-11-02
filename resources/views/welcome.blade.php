@@ -19,7 +19,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100&display=swap" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="/storage/icofont/icofont.min.css">
-    <script src="/js/main.js"></script>
+    <script>
+        $('document').ready(function(){
+            $('.btn-get-started').click(function(){
+            $('html, body').animate({
+                scrollTop: $($(this).attr('href')).offset().top
+            }, 300, 'linear');
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -28,7 +36,6 @@
     <div id="header" class="container-fluid header-transparent">
             <div class="col-lg-11 mx-auto">
                 <nav class="navbar navbar-expand-lg navbar-dark">
-
                     <h1 class="logo mr-auto"><a href="/">保險媒合平台</a></h1>
 
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
@@ -38,13 +45,12 @@
                     <div class="collapse navbar-collapse text-right" id="navbarNav">
                         <ul class="navbar-nav nav-menu ml-auto">
                             <li class="nav-item"> <a class="nav-link" href="#">風險分析</a> </li>
-                            <li class="nav-item"> <a class="nav-link" href="#">找業務員</a> </li>
-                            <li class="nav-item"> <a class="nav-link" href="#">車禍處理專區</a> </li>
+                            <li class="nav-item"> <a class="nav-link" href="sales/1">找業務員</a> </li>
+                            <li class="nav-item"> <a class="nav-link" href="sales/2">車禍處理專區</a> </li>
                             <li class="nav-item"> <a class="nav-link" href="/forum">討論區</a> </li>
                             <li class="nav-item"> <a class="nav-link" href="/login">登入</a> </li>
                         </ul>
                     </div>
-
                 </nav>
             </div>
         </div>
@@ -59,34 +65,46 @@
 
                     <div class="carousel-inner" role="listbox">
 
-                        <div class="carousel-item active" style="background-image: url(/storage/img/6.jpg)">
+                        <div class="carousel-item active" style="background-image: url(https://images.unsplash.com/photo-1482235225574-c37692835cf3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80)">
                             <div class="carousel-container">
                                 <div class="container">
-                                    <h2>We are professional</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                        consequat.</p>
-                                    <a href="#featured-services" class="btn-get-started">Get 01</a>
+                                    <h2>尋找最適合你的保險</h2>
+                                    <p>更貼心的服務、更多的選擇、更專業的諮詢，讓您找到最符合需求的保險</p>
+                                    <a href="#t1" class="btn-get-started">馬上體驗</a>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="carousel-item" style="background-image: url(/storage/img/car.jpg)">
+                        <div class="carousel-item" style="background-image: url(https://images.unsplash.com/photo-1548783300-70b41bc84f56?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80g)">
                             <div class="carousel-container">
                                 <div class="container">
-                                    <h2>We are professional</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                        consequat.</p>
-                                    <a href="#featured-services" class="btn-get-started">Get 02</a>
+                                    <h2>找業務員</h2>
+                                    <p>提供業務員相關資料，如：所屬公司、評價、證照、年資、服務地區，給您更貼心完善的服務。</p>
+                                    <a href="#t1" class="btn-get-started">馬上體驗</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="carousel-item" style="background-image: url(https://images.unsplash.com/photo-1597328290883-50c5787b7c7e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80)">
+                            <div class="carousel-container">
+                                <div class="container">
+                                    <h2>車禍處理專區</h2>
+                                    <p>提供您具有保險經紀人證照的業務員，及更專業的車禍相關諮詢服務。</p>
+                                    <a href="#t2" class="btn-get-started">馬上體驗</a>
                                 </div>
                             </div>
                         </div>
 
-
-
+                        <div class="carousel-item" style="background-image: url(https://images.unsplash.com/photo-1483213097419-365e22f0f258?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80)">
+                            <div class="carousel-container">
+                                <div class="container">
+                                    <h2>討論區</h2>
+                                    <p>將由專業的業務員解答您各類保險問題。</p>
+                                    <a href="#t3" class="btn-get-started">馬上體驗</a>
+                                </div>
+                            </div>
+                        </div>
+                        
                         <a class="carousel-control-prev" href="#introCarousel" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon ion-chevron-left" aria-hidden="true"></span>
                             <span class="sr-only">Previous</span>
@@ -103,42 +121,42 @@
     </section>
 
     <div class="container-fluid">
-        <div class="row d-flex justify-content-center">
+        <div class="row d-flex justify-content-center" id="t1">
             <div class="col-12 col-md-5 p-3 d-flex flex-column justify-content-center align-items-center">
-                <img class="img-fluid rounded " src="/storage/img/c1.jpg" alt="">
+                <img class="img-fluid rounded " src="https://images.unsplash.com/photo-1548783300-70b41bc84f56?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80g" alt="">
             </div>
             <div class="col-12 col-md-5 p-3 d-flex flex-column justify-content-center align-items-center">
 
                 <h2>找業務員</h2>
-                <p class="px-5">的目的為測試文章或文字在不同字型、版型下看起來的效果。中文的類似用法則稱為亂數假文、隨機假文。</p>
+                <p class="px-5">提供業務員相關資料，如：所屬公司、評價、證照、年資、服務地區，給您更貼心完善的服務。</p>
                 <div>
                     <a href="#" class="cta-btn">前往>>></a>
                 </div>
             </div>
         </div>
 
-        <div class="row d-flex justify-content-center">
+        <div class="row d-flex justify-content-center" id="t2">
             <div class="col-12 col-md-5 p-3 d-flex flex-column justify-content-center align-items-center order-md-2">
-                <img class="img-fluid rounded " src="/storage/img/c1.jpg" alt="">
+                <img class="img-fluid rounded " src="https://images.unsplash.com/photo-1597328290883-50c5787b7c7e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="">
             </div>
             <div class="col-12 col-md-5 p-3 d-flex flex-column justify-content-center align-items-center order-md-1">
 
                 <h2>車禍處理專區</h2>
-                <p class="px-5">的目的為測試文章或文字在不同字型、版型下看起來的效果。中文的類似用法則稱為亂數假文、隨機假文。</p>
+                <p class="px-5">提供您具有保險經紀人證照的業務員，及更專業的車禍相關諮詢服務。</p>
                 <div>
                     <a href="#" class="cta-btn">前往>>></a>
                 </div>
             </div>
         </div>
 
-        <div class="row d-flex justify-content-center">
+        <div class="row d-flex justify-content-center" id="t3">
             <div class="col-12 col-md-5 p-3 d-flex flex-column justify-content-center align-items-center">
-                <img class="img-fluid rounded " src="/storage/img/c1.jpg" alt="">
+                <img class="img-fluid rounded " src="https://images.unsplash.com/photo-1483213097419-365e22f0f258?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" alt="">
             </div>
             <div class="col-12 col-md-5 p-3 d-flex flex-column justify-content-center align-items-center">
 
                 <h2>討論區</h2>
-                <p class="px-5">的目的為測試文章或文字在不同字型、版型下看起來的效果。中文的類似用法則稱為亂數假文、隨機假文。</p>
+                <p class="px-5">將由專業的業務員解答您各類保險問題。</p>
                 <div>
                     <a href="#" class="cta-btn">前往>>></a>
                 </div>

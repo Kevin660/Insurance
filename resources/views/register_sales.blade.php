@@ -43,7 +43,6 @@
                         <h5 class="mx-auto">註冊</h5>
                         <div class="d-flex flex-column justify-content-center h-100">
 
-                            {{ $errors }}
                             <form method="POST" action="{{ route('register') }}" class="d-flex flex-column justify-content-center  ">
                                 @csrf
                                 <input name="role" type="hidden" value="1">
