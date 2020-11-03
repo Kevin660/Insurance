@@ -6,12 +6,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-use App\Question, App\User, App\Type, App\Vote;
+use App\Question, \App\QuestionType, App\User, App\Type, App\Vote;
 
 class QuestionController extends Controller
 {
     protected $questionValidation = [
-        'type_id' => 'bail|required|exists:types,id',
+        'type_id' => 'bail|required|array',
         'title' => 'bail|required|max:255',
         'content' => 'bail|required|max:5000',
     ];
@@ -49,17 +49,31 @@ class QuestionController extends Controller
 
     public function store(){
         $validator = Validator::make(request()->all(), $this->questionValidation);
+        $validator->after(function ($validator) {
+            $typeId = request()->all()['type_id'];
+            if (Type::find($typeId)->count() != count($typeId) and count($typeId) != 0) {
+                $validator->errors()->add('type_id', 'wrong input!');
+            }
+        });
         if ($validator->fails()) {
             return back()->withErrors($validator)
                          ->withInput();
         }
-
         $user = Auth::user();
         $data = request()->all();
         $data += [
             'user_id' => $user->id
         ];
+        $type_id_list = $data['type_id'];
+        unset($data['type_id']);
         $question = Question::create($data);
+        
+        foreach($type_id_list as $type_id){
+            QuestionType::create([
+                'question_id' => $question->id,
+                'type_id' => $type_id
+            ]);
+        }
         return redirect('questions/index');
     }
     
@@ -99,6 +113,7 @@ class QuestionController extends Controller
 
     // answer
     public function answer(Question $question){
+        dd('test');
         $validator = Validator::make(request()->all(), $this->answerValidation);
         if ($validator->fails()) {
             return back()->withErrors($validator)
@@ -167,7 +182,7 @@ class QuestionController extends Controller
         $questions = Question::where('title', 'like', '%'. $data['title'] .'%')
                          ->orderBy($data['order_by'], $data['order_method'])
                          ->get();
-        $questions->load(['user', 'type', 'votes', 'answer']);
+        $questions->load(['user', 'questionTypes.type', 'votes', 'answers']);
         return view('questions.index', compact('questions'));
     }
 
@@ -175,7 +190,7 @@ class QuestionController extends Controller
         $question->update([
             'viewCount' => $question->viewCount + 1
         ]);
-        $question->load(['user', 'type', 'votes', 'answer']);
+        $question->load(['user', 'type', 'votes', 'answers']);
         return view('questions.show', compact('question'));
     }
 }
