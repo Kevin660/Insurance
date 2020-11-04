@@ -1,8 +1,10 @@
 {
+    "/js/analyze.js": "/js/analyze.js",
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/js/main.js": "/js/main.js",
     "/css/style.css": "/css/style.css",
     "/css/login.css": "/css/login.css",
-    "/css/forum.css": "/css/forum.css"
+    "/css/forum.css": "/css/forum.css",
+    "/css/analyze.css": "/css/analyze.css"
 }
