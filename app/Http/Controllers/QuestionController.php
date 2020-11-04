@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-use App\Question, \App\QuestionType, App\User, App\Type, App\Vote;
+use App\Question, \App\QuestionType, App\User, App\Type, App\Vote, App\Answer;
 
 class QuestionController extends Controller
 {
@@ -113,34 +113,38 @@ class QuestionController extends Controller
 
     // answer
     public function answer(Question $question){
-        dd('test');
+        $user = Auth::user();
+        if ($user->role != 1) return abort(403, 'Unauthorized action.');
         $validator = Validator::make(request()->all(), $this->answerValidation);
+        if ($question->answers()->where('user_id', $user->id)->count() != 0) {
+            $validator->after(function ($validator) {
+                $validator->errors()->add('error_msg', 'you have answer this question.');
+            });
+        }
         if ($validator->fails()) {
             return back()->withErrors($validator)
                          ->withInput();
         }
-
-        $user = Auth::user();
         $data = request()->all();
         $data += [
-            'user_id' => $user->id
+            'user_id' => $user->id,
+            'question_id' => $question->id
         ];
-        $answer = $question->answer()->create($data);
-        return redirect('');
+        $answer = $question->answers()->create($data);
+        return true;
     }
     public function accept(Question $question, Answer $answer){
         $user = Auth::user();
-        if ($user == $question->user &&
-            $question  == $answer->question &&
+        if ($user->id == $question->user->id &&
+            $question->id  == $answer->question->id &&
             $question->answer == null){
             $question->update([
-                'answer' => $answer
+                'answer_id' => $answer->id
             ]);  
             return true;
         }
         return false;
     }
-
     // vote
     public function voteUp(Question $question){
         $user = Auth::user();
@@ -190,7 +194,8 @@ class QuestionController extends Controller
         $question->update([
             'viewCount' => $question->viewCount + 1
         ]);
-        $question->load(['user', 'type', 'votes', 'answers']);
-        return view('questions.show', compact('question'));
+        $user = Auth::user();
+        $question->load(['user', 'questionTypes.type', 'votes', 'answers']);
+        return view('questions.show', compact('question', 'user'));
     }
 }

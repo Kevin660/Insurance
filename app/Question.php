@@ -24,7 +24,7 @@ class Question extends Model
     
     public function answer(){
         // accepted one by the user
-        return $this->hasOne(Answer::class);
+        return $this->hasOne(Answer::class, 'id', 'answer_id');
     }
     public function answers(){
         return $this->hasMany(Answer::class);
