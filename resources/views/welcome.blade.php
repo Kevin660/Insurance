@@ -130,7 +130,7 @@
                 <h2>找業務員</h2>
                 <p class="px-5">提供業務員相關資料，如：所屬公司、評價、證照、年資、服務地區，給您更貼心完善的服務。</p>
                 <div>
-                    <a href="#" class="cta-btn">前往>>></a>
+                    <a href="/sales/1" class="cta-btn">前往>>></a>
                 </div>
             </div>
         </div>
@@ -144,7 +144,7 @@
                 <h2>車禍處理專區</h2>
                 <p class="px-5">提供您具有保險經紀人證照的業務員，及更專業的車禍相關諮詢服務。</p>
                 <div>
-                    <a href="#" class="cta-btn">前往>>></a>
+                    <a href="/sales/2" class="cta-btn">前往>>></a>
                 </div>
             </div>
         </div>
@@ -158,7 +158,7 @@
                 <h2>討論區</h2>
                 <p class="px-5">將由專業的業務員解答您各類保險問題。</p>
                 <div>
-                    <a href="#" class="cta-btn">前往>>></a>
+                    <a href="/forum" class="cta-btn">前往>>></a>
                 </div>
             </div>
         </div>

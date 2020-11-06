@@ -44,4 +44,8 @@ class User extends Authenticatable implements MustVerifyEmail
     public function  certifications(){
         return $this->hasMany(Certification::class);
     }
+
+    public function scoreHistory(){
+        return $this->hasMany(scoreHistory::class);
+    }
 }

@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
 
 use \App\User;
 class CreateUsersTable extends Migration
@@ -61,7 +61,7 @@ class CreateUsersTable extends Migration
                 'score' => 100,
                 'enabled' => 1,
                 'email_verified_at' => '2020-11-01',
-                'password' => Crypt::encryptString('abcd1234'),
+                'password' => Hash::make('abcd1234'),
             ],
             
             [
@@ -82,7 +82,7 @@ class CreateUsersTable extends Migration
                 'score' => 16,
                 'enabled' => 1,
                 'email_verified_at' => '2020-11-01',
-                'password' => Crypt::encryptString('user1234'),
+                'password' => Hash::make('abcd1234'),
             ],
             
             [
@@ -103,7 +103,7 @@ class CreateUsersTable extends Migration
                 'score' => 25,
                 'enabled' => 1,
                 'email_verified_at' => '2020-11-01',
-                'password' => Crypt::encryptString('1234user'),
+                'password' => Hash::make('abcd1234'),
             ]
         ];
         foreach($data as $d){

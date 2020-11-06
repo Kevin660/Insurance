@@ -35,7 +35,18 @@ Route::middleware(['auth', 'verified'])->group(function(){
         Route::post('{question}/voteCancel', 'QuestionController@voteCancel'); // �����벼
         
         Route::post('{question}/answer', 'QuestionController@answer');  // �s�W����
-        Route::post('{question}/accept/{{answer}}', 'QuestionController@accept'); // �]������
+        Route::post('{question}/accept/{answer}', 'QuestionController@accept'); // �]������
+    });
+    Route::prefix('answers')->group(function () { 
+        Route::get('indexSelf', 'AnswerController@indexSelf'); // with order param
+        Route::get('{answer}/edit', 'AnswerController@edit'); 
+        Route::post('{answer}', 'AnswerController@update');   // ��s�s�譶�������e
+        Route::delete('{answer}', 'AnswerController@destroy'); // �R���@�����D
+
+        Route::post('{answer}/voteUp', 'AnswerController@voteUp');  
+        Route::post('{answer}/voteDown', 'AnswerController@voteDown'); 
+        Route::post('{answer}/voteCancel', 'AnswerController@voteCancel'); 
+        
     });
 });
 
