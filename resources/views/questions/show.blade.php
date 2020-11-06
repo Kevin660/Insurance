@@ -69,7 +69,7 @@
                 @endforeach
                 <div style="border: solid; padding: 3px; margin: 5px;">
                     <div>Vote  <div id="questions-vote-{{ $question->id }}">{{ $question->votes()->sum('count') }}</div></div>
-                    @php ($myVote = $question->votes->where('user_id', $user->id)->first())
+                    @php ($myVote = $user ? $question->votes->where('user_id', $user->id)->first() : null)
                     @php ($myCount = $myVote ? $myVote->count : 0)
                     <input type='button' onclick="vote({{ $question->id }}, 'questions', 'voteUp')" value="up" @if($myCount == 1) disabled @endif/>
                     <input type='button' onclick="vote({{ $question->id }}, 'questions', 'voteDown')" value="down" @if($myCount == -1) disabled @endif/>
@@ -91,7 +91,7 @@
                     <div>Answer {{ $loop->iteration }} @if($question->answer == null) <input type="button" onclick="accept_answer({{$question->id}}, {{$answer->id}})" value="accept"/> @elseif($question->answer->id == $answer->id) <div class="alert alert-success">Accepted</div> @endif</div>
                     <div style="border: solid; padding: 3px; margin: 5px;">
                         <div>Vote  <div id="answers-vote-{{ $answer->id }}">{{ $answer->votes()->sum('count') }}</div></div>
-                        @php ($myVote = $answer->votes->where('user_id', $user->id)->first())
+                        @php ($myVote = $user ? $answer->votes->where('user_id', $user->id)->first() : null)
                         @php ($myCount = $myVote ? $myVote->count : 0)
                         <input type='button' onclick="vote({{ $answer->id }}, 'answers', 'voteUp')" value="up" @if($myCount == 1) disabled @endif/>
                         <input type='button' onclick="vote({{ $answer->id }}, 'answers', 'voteDown')" value="down" @if($myCount == -1) disabled @endif/>
