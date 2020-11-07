@@ -65,9 +65,8 @@ Route::get('/register_customer', function (){
 Route::get('/register_sales', function (){
     return view('register_sales');
 });
-Route::get('/forum', function (){
-    return view('forum');
-});
+Route::get('forum', 'QuestionController@index');
+
 Route::get('/forum_view', function (){
     return view('forum_view');
 });
