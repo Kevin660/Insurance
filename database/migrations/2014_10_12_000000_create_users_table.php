@@ -44,13 +44,14 @@ class CreateUsersTable extends Migration
         // init_data
         $data = [
             [
+                'id' => 1,
                 'img' => 'sales1.jpg',
                 'role' => '1',
                 'company' => '太陽保經',
                 'chinese_name' => '王小美',
                 'birthday' => '1995-02-07',
                 'gender' => '2',
-                'address' => '',
+                'address' => '雲林縣斗六市大學路3段123號',
                 'email' => 'B10623007@yuntech.edu.tw',
                 'number_home' => '022667777',
                 'number_cellphone' => '0912345678',
@@ -65,13 +66,14 @@ class CreateUsersTable extends Migration
             ],
             
             [
+                'id' => 2,
                 'img' => 'sales2.jpg',
                 'role' => '1',
                 'company' => '晨星保經',
                 'chinese_name' => '林小彤',
                 'birthday' => '1990-09-30',
                 'gender' => '1',
-                'address' => '',
+                'address' => '雲林縣斗六市大學路3段123號',
                 'email' => 'B10623058@yuntech.edu.tw',
                 'number_home' => '055776666',
                 'number_cellphone' => '0986012345',
@@ -86,13 +88,14 @@ class CreateUsersTable extends Migration
             ],
             
             [
+                'id' => 3,
                 'img' => 'sales3.jpg',
                 'role' => '1',
                 'company' => '幸福保經',
                 'chinese_name' => '張大華',
                 'birthday' => '1997-12-17',
                 'gender' => '1',
-                'address' => '',
+                'address' => '雲林縣斗六市大學路3段123號',
                 'email' => 'B10623022@yuntech.edu.tw',
                 'number_home' => '022667777',
                 'number_cellphone' => '0912345678',
@@ -104,7 +107,39 @@ class CreateUsersTable extends Migration
                 'enabled' => 1,
                 'email_verified_at' => '2020-11-01',
                 'password' => Hash::make('abcd1234'),
-            ]
+            ],            
+            [
+                'id' => 4,
+                'img' => '',
+                'role' => '2',
+                'chinese_name' => '王曉明',
+                'birthday' => '1996-10-27',
+                'gender' => '1',
+                'address' => '雲林縣斗六市大學路3段123號',
+                'email' => 'user1@mail.com',
+                'number_home' => '022667777',
+                'number_cellphone' => '0912345678',
+                'other' => '',
+                'enabled' => 1,
+                'email_verified_at' => '2020-11-01',
+                'password' => Hash::make('user1234'),
+            ],            
+            [
+                'id' => 5,
+                'img' => '',
+                'role' => '2',
+                'chinese_name' => '王小貴',
+                'birthday' => '1990-02-21',
+                'gender' => '2',
+                'address' => '雲林縣斗六市大學路3段123號',
+                'email' => 'user2@mail.com',
+                'number_home' => '022667777',
+                'number_cellphone' => '0912345678',
+                'other' => '',
+                'enabled' => 1,
+                'email_verified_at' => '2020-11-01',
+                'password' => Hash::make('user1234'),
+            ],
         ];
         foreach($data as $d){
             User::create($d);
