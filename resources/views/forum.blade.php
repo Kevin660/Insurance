@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>討論區</title>
 
     <!-- CSS only -->
@@ -87,61 +88,47 @@
 
     <div class="container">
         <div id="forum" class="my-3 pb-3 pl-3 pr-3 bg-white rounded shadow">
-            <div class="d-flex flex-column p-3">
+        @foreach($questions as $question)
+        <div class="d-flex flex-column p-3">
+        
                 <div>
                     <img class="rounded-circle m-1" src="https://picsum.photos/40">
-                    <span class="mr-auto"><a href="#">uploader</a></span>
-                    <!-- <button type="button" class="btn btn-outline-success btn-sm float-right">追蹤貼文</button> -->
+                    <span class="mr-auto"><a href="#">{{$question->user->chinese_name}}</a></span>
                 </div>
-                <h3>花蓮宅配伴手禮推薦買啥？花蓮縣餅有適合送長輩的嗎？</h3>
-                <p>關於花蓮宅配伴手禮推薦版上有人有想法嗎？現在我還不太敢去人多的地方趴趴走，但還是要挑伴手禮給長輩，甜的鹹的其實都可以，口味獨特的也能推薦，麻煩大家分享給我知道了！</p>
+                <h3>{{$question->title}}</h3>
+                <p>{{$question->content}}</p>
                 <div class="d-flex justify-content-between">
                     <div class="mr-auto">
-                        <a href="#" class="badge badge-secondary">意外險</a>
-                        <a href="#" class="badge badge-secondary">車禍</a>
+                    @foreach($question->questionTypes as $question_type)
+                            <a href="#" class="badge badge-secondary">{{ $question_type->type->name}}</a>
+                        @endforeach
                     </div>
-                    <small class="p-1">評價<span class="p-1">0</span> </small>
-                    <small class="p-1">回答<span class="p-1">0</span> </small>
-                    <small class="p-1">今天 00:00</small>
-                </div>
-            </div>
-            <div class="d-flex flex-column p-3">
-                <div>
-                    <img class="rounded-circle m-1" src="https://picsum.photos/40">
-                    <span class="mr-auto"><a href="#">uploader</a></span>
-                    <!-- <button type="button" class="btn btn-outline-success btn-sm float-right">追蹤貼文</button> -->
-                </div>
-                <h3>花蓮宅配伴手禮推薦買啥？花蓮縣餅有適合送長輩的嗎？</h3>
-                <p>關於花蓮宅配伴手禮推薦版上有人有想法嗎？現在我還不太敢去人多的地方趴趴走，但還是要挑伴手禮給長輩，甜的鹹的其實都可以，口味獨特的也能推薦，麻煩大家分享給我知道了！</p>
-                <div class="d-flex justify-content-between">
-                    <div class="mr-auto">
-                        <a href="#" class="badge badge-secondary">意外險</a>
-                        <a href="#" class="badge badge-secondary">車禍</a>
-                    </div>
-                    <small class="p-1">評價<span class="p-1">0</span> </small>
-                    <small class="p-1">回答<span class="p-1">0</span> </small>
-                    <small class="p-1">今天 00:00</small>
-                </div>
-            </div>
-            <div class="d-flex flex-column p-3">
-                <div>
-                    <img class="rounded-circle m-1" src="https://picsum.photos/40">
-                    <span class="mr-auto"><a href="#">uploader</a></span>
-                    <!-- <button type="button" class="btn btn-outline-success btn-sm float-right">追蹤貼文</button> -->
-                </div>
-                <h3>花蓮宅配伴手禮推薦買啥？花蓮縣餅有適合送長輩的嗎？</h3>
-                <p>關於花蓮宅配伴手禮推薦版上有人有想法嗎？現在我還不太敢去人多的地方趴趴走，但還是要挑伴手禮給長輩，甜的鹹的其實都可以，口味獨特的也能推薦，麻煩大家分享給我知道了！</p>
-                <div class="d-flex justify-content-between">
-                    <div class="mr-auto">
-                        <a href="#" class="badge badge-secondary">意外險</a>
-                        <a href="#" class="badge badge-secondary">車禍</a>
-                    </div>
-                    <small class="p-1">評價<span class="p-1">0</span> </small>
-                    <small class="p-1">回答<span class="p-1">0</span> </small>
-                    <small class="p-1">今天 00:00</small>
-                </div>
-            </div>
+                    
 
+                    <small class="p-1">評價<span class="p-1">{{ $question->votes()->sum('count') }}</span> </small>
+                    <small class="p-1">回答<span class="p-1">0</span> </small>
+                    <small class="p-1">{{$question->created_at}}</small>
+                </div>
+            </div>
+        @endforeach
+
+            <!-- <div class="d-flex flex-column p-3">
+                <div>
+                    <img class="rounded-circle m-1" src="https://picsum.photos/40">
+                    <span class="mr-auto"><a href="#">uploader</a></span>
+                </div>
+                <h3>花蓮宅配伴手禮推薦買啥？花蓮縣餅有適合送長輩的嗎？</h3>
+                <p>關於花蓮宅配伴手禮推薦版上有人有想法嗎？現在我還不太敢去人多的地方趴趴走，但還是要挑伴手禮給長輩，甜的鹹的其實都可以，口味獨特的也能推薦，麻煩大家分享給我知道了！</p>
+                <div class="d-flex justify-content-between">
+                    <div class="mr-auto">
+                        <a href="#" class="badge badge-secondary">意外險</a>
+                        <a href="#" class="badge badge-secondary">車禍</a>
+                    </div>
+                    <small class="p-1">評價<span class="p-1">0</span> </small>
+                    <small class="p-1">回答<span class="p-1">0</span> </small>
+                    <small class="p-1">今天 00:00</small>
+                </div>
+            </div> -->
         </div>
 
     </div>

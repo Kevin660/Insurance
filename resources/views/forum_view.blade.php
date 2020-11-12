@@ -80,18 +80,18 @@
             <div class="row">
                 <div class="col-3 text-center">
                     <img class="rounded-circle" src="https://picsum.photos/150/150">
-                    <p class="p-2"><a href="#">uploader</a></p>
+                    <p class="p-2"><a href="#">{{$question->user->chinese_name}}</a></p>
                 </div>
                 <div class="col-9 d-flex flex-column">
-                    <h3>花蓮宅配伴手禮推薦買啥？花蓮縣餅有適合送長輩的嗎？</h3>
+                    <h3>{{$question->title}}</h3>
                     <div class="mr-auto">
-                        <a href="#" class="badge badge-secondary">意外險</a>
-                        <a href="#" class="badge badge-secondary">車禍</a>
+                        @foreach($question->questionTypes as $question_type)
+                        <a href="#" class="badge badge-secondary">{{ $question_type->type->name}}</a>
+                        @endforeach
+
                     </div>
                     <div class="mt-1">
-                        <p>關於花蓮宅配伴手禮推薦版上有人有想法嗎？現在我還不太敢去人多的地方趴趴走，但還是要挑伴手禮給長輩，甜的鹹的其實都可以，口味獨特的也能推薦，麻煩大家分享給我知道了！</p>
-                        <p>關於花蓮宅配伴手禮推薦版上有人有想法嗎？現在我還不太敢去人多的地方趴趴走，但還是要挑伴手禮給長輩，甜的鹹的其實都可以，口味獨特的也能推薦，麻煩大家分享給我知道了！</p>
-                        <p>關於花蓮宅配伴手禮推薦版上有人有想法嗎？現在我還不太敢去人多的地方趴趴走，但還是要挑伴手禮給長輩，甜的鹹的其實都可以，口味獨特的也能推薦，麻煩大家分享給我知道了！</p>
+                        <p>{{$question->content}}</p>
                     </div>
                     <div class="review">
 
@@ -102,7 +102,7 @@
                             <span class="p-1">0</span>
                             <i class="fas fa-caret-down text-secondary"></i>
                         </div>
-                        <small>今天 00:00</small>
+                        <small>{{$question->created_at}}</small>
                     </div>
                 </div>
 
@@ -114,6 +114,7 @@
         <!-- 回答者 -->
         <div id="forum" class="my-3 pb-3 pl-3 pr-3 bg-white rounded shadow-sm">
 
+            @forelse($question->answers as $answer)
             <div class="p-3">
                 <div class="row">
                     <div class="col-3 text-center">
@@ -122,21 +123,25 @@
                     </div>
 
                     <div class="col-9 d-flex flex-column">
-                        <p>關於花蓮宅配伴手禮推薦版上有人有想法嗎？現在我還不太敢去人多的地方趴趴走，但還是要挑伴手禮給長輩，甜的鹹的其實都可以，口味獨特的也能推薦，麻煩大家分享給我知道了！</p>
-                        <p>關於花蓮宅配伴手禮推薦版上有人有想法嗎？現在我還不太敢去人多的地方趴趴走，但還是要挑伴手禮給長輩，甜的鹹的其實都可以，口味獨特的也能推薦，麻煩大家分享給我知道了！</p>
-                        <p>關於花蓮宅配伴手禮推薦版上有人有想法嗎？現在我還不太敢去人多的地方趴趴走，但還是要挑伴手禮給長輩，甜的鹹的其實都可以，口味獨特的也能推薦，麻煩大家分享給我知道了！</p>
-                        <div class="d-flex justify-content-between">
+                        <p>{{$answer->content}}</p>
+                        <div class="d-flex justify-content-between mt-auto">
                             <div class="mr-auto">
                                 <i class="fas fa-caret-up text-secondary"></i>
-                                <span class="p-1">0</span>
+                                <span class="p-1">{{ $answer->votes()->sum('count') }}</span>
                                 <i class="fas fa-caret-down text-secondary"></i>
                             </div>
-                            <small>今天 00:00</small>
+                            <small> {{$answer->created_at}}</small>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="p-3">
+
+            @empty
+            <div>no answer now</div>
+            @endforelse
+
+            
+            <!-- <div class="p-3">
                 <div class="row">
                     <div class="col-3 text-center">
                         <img class="rounded-circle" src="https://picsum.photos/150/150">
@@ -156,7 +161,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
 
 

@@ -80,14 +80,14 @@ Route::get('/register_sales', function (){
     if (Auth::user()) return redirect('home');
     return view('register_sales');
 });
-Route::get('/forum', function (){
-    return view('forum');
-});
+Route::get('forum', 'QuestionController@index');
+
 Route::get('/forum_view', function (){
     return view('forum_view');
 });
 Route::get('/forum_post', function (){
     return view('forum_post');
 });
-
-Route::get('/sales/{typeId}', 'UserController@sales');
+Route::get('/analyze', function (){
+    return view('analyze');
+});

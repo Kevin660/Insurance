@@ -190,7 +190,7 @@ class QuestionController extends Controller
                          ->orderBy($data['order_by'], $data['order_method'])
                          ->get();
         $questions->load(['user', 'questionTypes.type', 'votes', 'answers']);
-        return view('questions.index', compact('questions'));
+        return view('forum', compact('questions'));//questions.index //forum
     }
 
     public function show(Question $question){
@@ -199,6 +199,6 @@ class QuestionController extends Controller
         ]);
         $user = Auth::user();
         $question->load(['user', 'questionTypes.type', 'votes', 'answers']);
-        return view('questions.show', compact('question', 'user'));
+        return view('forum_view', compact('question', 'user'));//questions.show
     }
 }
