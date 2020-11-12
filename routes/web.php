@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Auth::routes(['verify' => true]);
+Auth::routes([
+    'login' => false,
+    'register' => true,
+    'reset' => false,
+    'verify' => true
+]);
 Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/home', 'HomeController@index')->name('home');
     
@@ -46,8 +51,15 @@ Route::middleware(['auth', 'verified'])->group(function(){
         Route::post('{answer}/voteDown', 'AnswerController@voteDown'); 
         Route::post('{answer}/voteCancel', 'AnswerController@voteCancel'); 
     });
+    Route::prefix('notifications')->group(function () { 
+        Route::post('{notification}', 'NotificationController@read');
+        Route::post('readAll', 'NotificationController@readAll');
+    });
 });
-
+Route::middleware(['auth'])->group(function(){
+    Route::get('/user', 'UserController@indexSelf')->name('user');
+    Route::post('/user', 'UserController@update');
+});
 Route::prefix('questions')->group(function () {  // 無須登入
     Route::get('index', 'QuestionController@index');  // with order param
     Route::get('{question}', 'QuestionController@show');  // 顯示單筆問題
@@ -55,14 +67,17 @@ Route::prefix('questions')->group(function () {  // 無須登入
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/login', function (){
+    if (Auth::user()) return redirect('home');
     return view('login');
 })->name("login");
 
 Route::get('/register_customer', function (){
+    if (Auth::user()) return redirect('home');
     return view('register_customer');
 });
 
 Route::get('/register_sales', function (){
+    if (Auth::user()) return redirect('home');
     return view('register_sales');
 });
 Route::get('/forum', function (){

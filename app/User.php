@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+use App\Notiification;
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
@@ -47,5 +48,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function scoreHistory(){
         return $this->hasMany(scoreHistory::class);
+    }
+
+    public function notifications(){
+         return $this->hasMany(Notification::class);
     }
 }
