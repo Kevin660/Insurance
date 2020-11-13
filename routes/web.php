@@ -88,6 +88,7 @@ Route::get('/forum_view', function (){
 Route::get('/forum_post', function (){
     return view('forum_post');
 });
+Route::get('/sales/{typeId}', 'UserController@sales');
 Route::get('/analyze', function (){
     return view('analyze');
 });
