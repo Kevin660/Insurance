@@ -89,6 +89,5 @@ Route::get('/forum_post', function (){
     return view('forum_post');
 });
 Route::get('/sales/{typeId}', 'UserController@sales');
-Route::get('/analyze', function (){
-    return view('analyze');
-});
+Route::get('/analyze', 'ExpertQuestionController@question');
+Route::post('/analyze', 'ExpertQuestionController@analyze');
