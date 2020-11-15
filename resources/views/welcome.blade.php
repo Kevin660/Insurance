@@ -75,7 +75,7 @@
                             </div>
                         </div>
 
-                        <div class="carousel-item" style="background-image: url(https://images.unsplash.com/photo-1548783300-70b41bc84f56?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80g)">
+                        <div class="carousel-item" style="background-image: url(https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80)">
                             <div class="carousel-container">
                                 <div class="container">
                                     <h2>找業務員</h2>
@@ -123,12 +123,12 @@
     <div class="container-fluid">
         <div class="row d-flex justify-content-center" id="t1">
             <div class="col-12 col-md-5 p-3 d-flex flex-column justify-content-center align-items-center">
-                <img class="img-fluid rounded " src="https://images.unsplash.com/photo-1548783300-70b41bc84f56?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80g" alt="">
+                <img class="img-fluid rounded " src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80" alt="">
             </div>
             <div class="col-12 col-md-5 p-3 d-flex flex-column justify-content-center align-items-center">
 
                 <h2>找業務員</h2>
-                <p class="px-5">提供業務員相關資料，如：所屬公司、評價、證照、年資、服務地區，給您更貼心完善的服務。</p>
+                <p class="px-5">我們將向您提供業務員最詳細的相關資料，如：所屬公司、提供之保險業務、評價、證照、年資、服務地區...等資訊，使您能夠自行選擇提供服務的最佳人選，讓您能夠更加安心的享受業務員為您提供的所有服務，保證您的所有個資安全。 </p>
                 <div>
                     <a href="/sales/1" class="cta-btn">前往>>></a>
                 </div>
@@ -142,7 +142,7 @@
             <div class="col-12 col-md-5 p-3 d-flex flex-column justify-content-center align-items-center order-md-1">
 
                 <h2>車禍處理專區</h2>
-                <p class="px-5">提供您具有保險經紀人證照的業務員，及更專業的車禍相關諮詢服務。</p>
+                <p class="px-5">我們將向您提供具有保險經紀人證照的業務員，讓您不再為車禍糾紛及後續相關問題而傷透腦筋，為您解決車禍所有糾紛及後續賠償問題，為您省下更多寶貴的時間。</p>
                 <div>
                     <a href="/sales/2" class="cta-btn">前往>>></a>
                 </div>
@@ -156,7 +156,7 @@
             <div class="col-12 col-md-5 p-3 d-flex flex-column justify-content-center align-items-center">
 
                 <h2>討論區</h2>
-                <p class="px-5">將由專業的業務員解答您各類保險問題。</p>
+                <p class="px-5">此區可以讓您提出任何與保險有關的所有問題，將會由專業的業務員回答您，您也可以為您所提出的問題設定最佳解答，並且追蹤您有興趣的相關貼文，讓您能夠更加了解自己最需要的保險類型，不再對保險抱有疑問。</p>
                 <div>
                     <a href="/forum" class="cta-btn">前往>>></a>
                 </div>
