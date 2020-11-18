@@ -71,7 +71,7 @@
                             </div>
                         </div>
                     </li>
-                    <li class="list-group-item link-btn-full text-center mt-auto" onclick="location.href='/user'">查看更多</li>
+                    <li class="list-group-item link-btn-full text-center mt-auto" onclick="location.href='/notifications/index'">查看更多</li>
                 </ul>
             </div>
         </div>    
@@ -80,15 +80,57 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
                         <div>
-                            <h5 class="card-title">媒合紀錄</h5>
-                            <div class="card-text my-3">
-                                <div>姓名</div>
-                                <div>{{ $user->chinese_name }}</div>
+                            <h5 class="card-title">最近媒合紀錄</h5>
+                            <div class="card-text my-3 row" style="height: 300px">
+                                @if($user->expertRecord)
+                                <div class="col-6 text-center">
+                                    <a href="/sales/{{ $user->expertRecord->sale->id }}">
+                                        <img src="/storage/img/user/{{ $user->expertRecord->sale->img }}" style="max-height: 200px"/>
+                                    </a>
+                                    <div class="mt-2 mb-2">
+                                        <div style='display:table; margin:auto; width: 120px; height: 30px;'>
+                                            <span class="bg-dark text-light" style="display: table-cell; vertical-align: middle; font-size: 16px; border-right: 6px dashed #fff;">評分</span>
+                                            <span class="bg-success text-light" style="display: table-cell; vertical-align: middle; font-size: 24px;">{{ $user->expertRecord->sale->score }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="container-fluid">
+                                        <div class="row justify-content-center">
+                                        @foreach($user->expertRecord->sale->certifications as $certification)
+                                            <div>
+                                                <img src="/storage/img/badge/badge{{ $certification->certificationType->type }}.png" alt="" title="{{ $certification->certificationType->name }}">
+                                            </div>
+                                        @endforeach
+                                        </div>  
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                
+                                    <div class="mt-1 mb-1">
+                                        <div class="text-light bg-dark px-3 py-1" style="display: table-cell;">公司</div>
+                                        <div style="text-indent: 2em;">{{ $user->expertRecord->sale->company }}</div>
+                                    </div>
+                                    <div class="mt-1 mb-1">
+                                        <div class="text-light bg-dark px-3 py-1" style="display: table-cell;">姓名</div>
+                                        <div style="text-indent: 2em;">{{ $user->expertRecord->sale->chinese_name }}</div>
+                                    </div>
+                                    <div class="mt-1 mb-1">
+                                        <div class="text-light bg-dark px-3 py-1" style="display: table-cell;">服務年資</div>
+                                        <div style="text-indent: 2em; ">{{ $user->expertRecord->sale->serve_experience }}年</div>
+                                    </div>
+                                    <div class="mt-1 mb-1">
+                                        <div class="text-light bg-dark px-3 py-1" style="display: table-cell;">諮詢時間</div>
+                                        <div style="text-indent: 2em; ">{{ $user->expertRecord->created_at }}</div>
+                                    </div>
+                                    <div style="position: absolute; bottom: 0">
+                                        <a class="btn btn-primary" style="width: 200px" href="/sales/{{ $user->expertRecord->sale->id }}">個人資料</a>
+                                    </div>
+                                </div>                                    
+                                @endif
                             </div>
                             
                         </div>
                     </li>
-                    <li class="list-group-item link-btn-full text-center mt-auto" onclick="location.href='/'">查看更多</li>
+                    <li class="list-group-item link-btn-full text-center mt-auto" onclick="location.href='/expertRecord'">查看更多</li>
                 </ul>
             </div>
         </div>

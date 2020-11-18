@@ -117,7 +117,7 @@
                 </div>
                 @endforeach
                 <button type="button" class="btn btn-secondary btn-lg mt-3" onclick="location.href='/analyze'">重新分析</button>
-                <button type="button" class="btn btn-success btn-lg mt-3" onclick="location.href='/sales/1'">立即諮詢</button>
+                <button type="button" class="btn btn-success btn-lg mt-3" onclick="location.href='/sales/index/1'">立即諮詢</button>
             </div>
         </div>
     </div>

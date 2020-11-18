@@ -6,7 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-use App\Notiification;
+use App\Notiification, App\ExpertRecord;
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
@@ -52,5 +52,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function notifications(){
          return $this->hasMany(Notification::class);
+    }
+
+    public function expertRecords(){
+        return $this->hasMany(ExpertRecord::class);
     }
 }

@@ -27,6 +27,7 @@ class HomeController extends Controller
         $user = Auth::user();
         $user->questions = $user->questions->sortByDesc('created_at');
         $user->notifications = $user->notifications->whereNull('read_time')->sortByDesc('created_at');
+        $user->expertRecord =  $user->expertRecords->sortBy('created_at')->last();
         $user->load(['questions.answers', 'questions.answer']);
         return view('backend.home', compact('user'));
     }
