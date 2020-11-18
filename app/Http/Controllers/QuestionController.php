@@ -35,16 +35,17 @@ class QuestionController extends Controller
         $data['title'] = $data['title'] ?? '';
         
         $user = Auth::user();
+        $types = Type::all();
         $questions = Question::where('user_id', $user->id)
                         ->where('title', 'like', '%'. $data['title'] .'%')
                         ->orderBy($data['order_by'], $data['order_method'])
                         ->get();
-        $questions->load(['user', 'type', 'votes', 'answer']);
-        return view('questions.index', compact('questions'));
+        $questions->load(['user', 'questionTypes.type', 'votes', 'answer']);
+        return view('forum', compact('questions','types')); //forum
     }
     public function create(){
         $types = Type::all();
-        return view('questions.create', compact('types'));
+        return view('forum_post', compact('types')); //questions.create //forum_post
     }
 
     public function store(){
@@ -81,8 +82,8 @@ class QuestionController extends Controller
     public function edit(Question $question){
         $user = Auth::user();
         if ($user == $question->user && $question->answer == null){
-            $question->load(['user', 'type', 'votes', 'answer']);
-            return view('questions.edit', compact('question'));
+            $question->load(['user', 'questionTypes.type', 'votes', 'answer']);
+            return view('questions.edit', compact('question'));//questions.edit //forum_edit
         }
         return abort(403, 'Unauthorized action.');
     }
@@ -187,7 +188,8 @@ class QuestionController extends Controller
                          ->orderBy($data['order_by'], $data['order_method'])
                          ->get();
         $questions->load(['user', 'questionTypes.type', 'votes', 'answers']);
-        return view('forum', compact('questions'));//questions.index //forum
+        $types = Type::all();
+        return view('forum', compact('questions','types'));//questions.index //forum
     }
 
     public function show(Question $question){
@@ -196,6 +198,6 @@ class QuestionController extends Controller
         ]);
         $user = Auth::user();
         $question->load(['user', 'questionTypes.type', 'votes', 'answers']);
-        return view('forum_view', compact('question', 'user'));//questions.show
+        return view('questions.show', compact('question', 'user'));//questions.show //forum_view
     }
 }
