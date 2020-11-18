@@ -9,7 +9,7 @@
 /*選項按鈕*/
 
 
-div#options > button { 
+.ex-options > button { 
     min-height: 100px;
     flex-basis: 23%;
     margin:0 1% 20px 1% ;
@@ -23,7 +23,7 @@ div#options > button {
 
 
 
-div#options > button:hover{ 
+.ex-options > button:enabled:hover{ 
     min-height: 100px;
     flex-basis: 23%;
     margin:0 1% 20px 1% ;
@@ -33,9 +33,26 @@ div#options > button:hover{
     transition: .2s ;
 }
 
+.ex-options > button:disabled{
+    color: #38c172;
+    border-color: #38c172;
+}
+
+.ex-question{
+    display: none;
+}
+.ex-question.actived{
+    display: block;
+}
+.ex-option-selected{
+    color: #fff !important;
+    background-color: #28a745 !important;
+    border-color: #38c172 !important;
+}
+
 @media (max-width:576px) {
 
-    div#options > button { 
+    .ex-options > button { 
         flex-basis: 48%;
     margin:0 1% 20px 1% ;
     
@@ -48,7 +65,7 @@ div#options > button:hover{
     
     
     
-    div#options > button:hover { 
+    .ex-options > button:enabled:hover { 
         min-height: 100px;
         flex-basis: 48%;
     margin:0 1% 20px 1% ;
@@ -59,7 +76,11 @@ div#options > button:hover{
     
         transition: .2s ;
     }
-
+    
+    .ex-options > button:disabled{
+        color: #38c172;
+        border-color: #38c172;
+    }
 }
 
 /*分析結果*/

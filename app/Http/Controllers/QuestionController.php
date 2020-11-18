@@ -6,10 +6,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
+use App\Traits\NotificationHandler;
 use App\Question, \App\QuestionType, App\User, App\Type, App\Vote, App\Answer;
 
 class QuestionController extends Controller
 {
+    use NotificationHandler;
     protected $questionValidation = [
         'type_id' => 'bail|required|array',
         'title' => 'bail|required|max:255',
@@ -82,8 +84,8 @@ class QuestionController extends Controller
     public function edit(Question $question){
         $user = Auth::user();
         if ($user == $question->user && $question->answer == null){
-            $question->load(['user', 'questionTypes.type', 'votes', 'answer']);
-            return view('questions.edit', compact('question'));//questions.edit //forum_edit
+            $question->load(['user', 'votes', 'answer']);
+            return view('questions.edit', compact('question'));
         }
         return abort(403, 'Unauthorized action.');
     }
@@ -132,6 +134,7 @@ class QuestionController extends Controller
             'question_id' => $question->id
         ];
         $answer = $question->answers()->create($data);
+        $this->addNotification($user, '討論區', '你的發問有新增一筆回答', '/questions/'.$question->id);
         return true;
     }
     public function accept(Question $question, Answer $answer){

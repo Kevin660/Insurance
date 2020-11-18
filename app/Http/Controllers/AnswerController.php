@@ -6,12 +6,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-use App\Traits\ScoreHandler;
+use App\Traits\ScoreHandler, App\Traits\NotificationHandler;
 
 use App\Answer;
 class AnswerController extends Controller
 {
-    use scoreHandler;
+    use scoreHandler, notificationHandler;
     protected $validation = [
         'content' => 'bail|required|max:5000',
     ];
@@ -21,7 +21,7 @@ class AnswerController extends Controller
     public function edit(Answer $answer){
         $user = Auth::user();
         if ($user == $answer->user){
-            $answer->load(['user', 'type', 'votes', 'answer']);
+            $answer->load(['user', 'votes']);
             return view('answers.edit', compact('answer'));
         }
         return abort(403, 'Unauthorized action.');
@@ -36,8 +36,8 @@ class AnswerController extends Controller
                 return back()->withErrors($validator)
                             ->withInput();
             }
-
-            $answer->update(request()->all());
+            $answer->update(request()->all());        
+            $this->addNotification($answer->question->user, '討論區', '你的發問有更新一筆回答', '/questions/'.$answer->question->id.'#answer-'.$answer->id);
             return back()->withInput();
         }
         return abort(403, 'Unauthorized action.');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user = Auth::user();
+        $user->questions = $user->questions->sortByDesc('created_at');
+        $user->notifications = $user->notifications->whereNull('read_time')->sortByDesc('created_at');
+        $user->load(['questions.answers', 'questions.answer']);
+        return view('backend.home', compact('user'));
     }
 }

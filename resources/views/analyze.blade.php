@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>風險分析</title>
 
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- CSS only -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- JS, Popper.js, and jQuery -->
@@ -58,62 +60,68 @@
 
 
     <!-- 專家系統 -->
+    
+    @isset($questions)
     <div id="analyze" class="container-fluid ">
-
         <div class="row h-100">
             <div class="col-2 m-auto text-center">
-                <a href="#">
+                <a href="#" class="ex-prev">
                     <i class="fas fa-angle-double-left angle"></i>
-                    <p> 上一題 </p>
+                    <p> 上一步 </p>
                 </a>
             </div>
-
-
-
-            <div class="col-8">
-                <div class="h-25 pt-5 d-flex justify-content-center align-items-end">
-                    <p class="h2"> 1.請問您需要的服務類別？
-                    </p>
+                @foreach($questions as $question)
+                <div id="ex-question-{{ $question->id }}" class="col-8 ex-question @if($question->multiple) ex-question-multiple @endif @if($question->type == 'root') actived @elseif($question->type == 'end') ex-question-end @endif">
+                    <div class="h-25 pt-5 d-flex flex-column justify-content-end align-items-center text-center">
+                        <div>
+                            <p class="h2"> {{ $question->name }}</p>
+                        </div>
+                        <div>
+                        @if($question->multiple) 
+                            <small>請選擇一至多個</small>
+                        @else
+                            <small>請選擇一個</small>
+                        @endif
+                        </div>
+                    </div>
+                    <div class="h-50 d-flex align-items-start align-content-start flex-wrap mt-5 justify-content-center ex-options">
+                        @foreach($question->options as $option)
+                            <button id="ex-option-{{ $option->id }}" class="btn btn-outline-success ex-option" data-next="@if($option->nextQuestion){{ $option->nextQuestion->id }}@endif">{{ $option->name }}</button>
+                        @endforeach
+                    </div>
                 </div>
-
-
-                <div id="options" class="h-75 d-flex align-items-start align-content-start flex-wrap mt-5">
-                    <button class="btn btn-success">產品與服務介紹</button>
-                    <button class="btn btn-success">合作方式與價格諮詢</button>
-                    <button class="btn btn-success">異業合作諮詢</button>
-                    <button class="btn btn-success">其他</button>
-                    <button class="btn btn-success">產品與服務介紹</button>
-                    <button class="btn btn-success">合作方式與價格諮詢</button>
-                </div>
-
+                @endforeach
+            <div class="col-2 m-auto text-center" style="display: none;">
+                <button class="form-control btn btn-success f-btn" type="submit">查看結果</button>
             </div>
-
-            <!-- 分析結果 -->
-            <!-- 
-            <div class="col-8 text-center">
-                <p class="h1 my-5"> 您需要的保險產品如下...
-                </p>
-                <div class="results py-4 m-2">專業責任保險(智慧財產權附加條款)
-                </div>
-                <div class="results py-4 m-2">專業責任保險(智慧財產權附加條款)
-                </div>
-                <div class="results py-4 m-2">專業責任保險(智慧財產權附加條款)
-                </div>
-                <button type="button" class="btn btn-success btn-lg mt-3">立即諮詢</button>
-            </div> -->
-
             <div class="col-2 m-auto text-center">
-                <!-- <a href="#">
+                <a href="#" class="ex-next">
                     <i class="fas fa-angle-double-right angle"></i>
-                    <p>下一題</p>
-                </a> -->
+                    <p>下一步</p>
+                </a>
             </div>
         </div>
-
     </div>
+    @endisset
 
-
-
+    <!-- 分析結果 -->
+    @isset($results)
+    <div id="result" class="container-fluid">
+        <div class="row h-100">
+            <div class="col-md-6 text-center m-auto">
+                <p class="h1 my-5"> 您需要的保險產品如下...</p>
+                @foreach($results as $result)
+                <div class="results pb-4 m-4">
+                    <div class="bg-success">{{ $result->item->name }}</div>
+                    <div>{{ $result->item->description }}</div>
+                </div>
+                @endforeach
+                <button type="button" class="btn btn-secondary btn-lg mt-3" onclick="location.href='/analyze'">重新分析</button>
+                <button type="button" class="btn btn-success btn-lg mt-3" onclick="location.href='/sales/1'">立即諮詢</button>
+            </div>
+        </div>
+    </div>
+    @endisset
     <footer class="border-top pt-3 mt-3">
 
         <div class="container">
