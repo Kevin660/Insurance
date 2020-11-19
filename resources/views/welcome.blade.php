@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>首頁</title>
+    <title>{{ env('APP_NAME')}}－首頁</title>
 
     <!-- CSS only -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- JS, Popper.js, and jQuery -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/welcome.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
         crossorigin="anonymous"></script>
@@ -19,32 +20,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100&display=swap" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="/storage/icofont/icofont.min.css">
-    <script>
-        $('document').ready(function(){
-            $('.btn-get-started').click(function(){
-            $('html, body').animate({
-                scrollTop: $($(this).attr('href')).offset().top
-            }, 300, 'linear');
-            });
-            window.onscroll = function() {
-                var body = window.document.body; //IE 'quirks'
-                var document = window.document.documentElement; //IE with doctype
-                document = (document.clientHeight) ? document : body;
-
-                if (document.scrollTop == 0) {
-                    $("#header").addClass('header-transparent');
-                }else{
-                    $("#header").removeClass('header-transparent');
-                }
-            };
-        });
-    </script>
 </head>
 
 <body>
 
     <header class="fixed-top">
-    <div id="header" class="container-fluid header-transparent">
+        <div id="header" class="container-fluid header-transparent">
             <div class="col-lg-11 mx-auto">
                 <nav class="navbar navbar-expand-lg navbar-dark">
                     <h1 class="logo mr-auto"><a href="/">保險媒合平台</a></h1>
@@ -59,7 +40,12 @@
                             <li class="nav-item"> <a class="nav-link" href="/sales/index/1">找業務員</a> </li>
                             <li class="nav-item"> <a class="nav-link" href="/sales/index/2">車禍處理專區</a> </li>
                             <li class="nav-item"> <a class="nav-link" href="/forum">討論區</a> </li>
-                            <li class="nav-item"> <a class="nav-link" href="/login">登入</a> </li>
+                            @guest
+                                <li class="nav-item nav-item-green px-2"> <a class="nav-link" href="/login">登入</a> </li>
+                            @endguest
+                            @auth
+                                <li class="nav-item nav-item-green"> <a class="nav-link" href="/home">後台管理</a></li>
+                            @endauth
                         </ul>
                     </div>
                 </nav>
@@ -163,7 +149,7 @@
                 <h2>找業務員</h2>
                 <p class="px-5">我們將向您提供業務員最詳細的相關資料，如：所屬公司、提供之保險業務、評價、證照、年資、服務地區...等資訊，使您能夠自行選擇提供服務的最佳人選，讓您能夠更加安心的享受業務員為您提供的所有服務，保證您的所有個資安全。 </p>
                 <div>
-                    <a href="/sales/1" class="cta-btn">前往>>></a>
+                    <a href="/sales/index/1" class="cta-btn">前往>>></a>
                 </div>
             </div>
         </div>
@@ -177,7 +163,7 @@
                 <h2>車禍處理專區</h2>
                 <p class="px-5">我們將向您提供具有保險經紀人證照的業務員，讓您不再為車禍糾紛及後續相關問題而傷透腦筋，為您解決車禍所有糾紛及後續賠償問題，為您省下更多寶貴的時間。</p>
                 <div>
-                    <a href="/sales/2" class="cta-btn">前往>>></a>
+                    <a href="/sales/index/2" class="cta-btn">前往>>></a>
                 </div>
             </div>
         </div>
@@ -202,15 +188,18 @@
         <div class="container">
             <div class="row">
 
-                <div class="col-12 col-lg-6 col-md-4">
+                <div class="col-8 col-lg-3 col-md-4">
                     <h3 class="logo">保險媒合平台</h3>
+                </div>
+                <div class="col-4 col-lg-3 col-md-4">
+                    <img src="/storage/img/qrcode.png"/>
                 </div>
                 <div class="col-12 col-lg-3 col-md-4 my-3 my-md-0 footer-links d-flex align-items-center">
                     <ul>
-                        <li><i class="ion-ios-arrow-right"></i> <a href="#">風險分析</a></li>
-                        <li><i class="ion-ios-arrow-right"></i> <a href="#">找業務員</a></li>
-                        <li><i class="ion-ios-arrow-right"></i> <a href="#">車禍處理專區</a></li>
-                        <li><i class="ion-ios-arrow-right"></i> <a href="#">討論區</a></li>
+                        <li><i class="ion-ios-arrow-right"></i> <a href="/analyze">風險分析</a></li>
+                        <li><i class="ion-ios-arrow-right"></i> <a href="/sales/index/1">找業務員</a></li>
+                        <li><i class="ion-ios-arrow-right"></i> <a href="/sales/index/2">車禍處理專區</a></li>
+                        <li><i class="ion-ios-arrow-right"></i> <a href="/forum">討論區</a></li>
                     </ul>
                 </div>
                 <div class="col-12 col-lg-3 col-md-4 footer-contact ">
@@ -219,14 +208,14 @@
                     </p>
                     <p>
                         0800-000-000 <br>
-                        support@mail.com
+                        {{ env('MAIL_USERNAME') }}
                     </p>
                 </div>
             </div>
         </div>
         <div class="container-fluid">
             <div class="row d-flex justify-content-center copyright">
-                <span>MIS department©2020</span>
+                <span>{{ env('APP_NAME') }}©2020</span>
             </div>
         </div>
 

@@ -41,7 +41,9 @@
                             <div class="card-title">
                                 <div class="row">
                                     <div class="col-9"><h5>通知 <span class="badge badge-pill badge-warning">{{ $user->notifications->count() }}</span></h5></div>
+                                    <div class="col-3"><button class="btn btn-primary" onclick="notificationReadAll()">全部清除</button></div>
                                 </div>
+                    
                             </div>
                             <div>
                                 <table class="table table-hover">
@@ -309,6 +311,25 @@
         document.body.appendChild(form);
         form.submit();
         $(t).remove();
+    }
+    function notificationReadAll(){
+        $.ajax({
+            'url': '/notifications/readAll',
+            'method': 'post',
+            'headers': {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+            success: function(){
+                alert('清除成功');
+            },
+            error: function(){
+                alert('發生錯誤');
+            },
+            complete: function(){
+                location.reload();
+            }
+            
+        });
     }
 </script>
 @endsection

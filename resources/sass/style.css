@@ -176,7 +176,13 @@ body {
   position: absolute;
   right: 15px;
 }
-
+.nav-item-green{
+  background-color: #28a745;
+}
+.nav-item-green:hover{
+  background-color: transparent;
+  color: #fff;
+}
 @media (max-width: 1366px) {
   .nav-menu .drop-down .drop-down ul {
     left: -90%;

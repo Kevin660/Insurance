@@ -75,7 +75,6 @@ html,body {
        transition: all 0.5s;
        z-index: 997;
        padding: 26px 0;
-       background: rgb(255, 255, 255);
      }
      
      #header.header-transparent {
@@ -105,10 +104,6 @@ html,body {
        letter-spacing: 3px;
        padding-left: 10px;
        border-left: 4px solid #28a745;
-     }
-     
-     #header .logo a {
-       color: rgb(37, 17, 17);
      }
      
      #header .logo img {
