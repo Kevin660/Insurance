@@ -82,7 +82,7 @@
                         <span class="text-muted">{{ $sale->introduction }}</span>
                     </div>
                     <div class="mt-3">
-                        <button type="button" class="btn btn-success btn-lg btn-block">立即諮詢</button>
+                        <button type="button" class="btn btn-success btn-lg btn-block" onclick="location.href='/sales/{{ $sale->id }}'">立即諮詢</button>
                     </div>
                 </div>
             </div>

@@ -13,6 +13,12 @@
             <input type="text" name="title" value="{{ $question->title }}"/>
         </div>
         <div>
+            <label>type</label>
+                @foreach($types as $type)
+                    <input name="type_id[]" type="checkbox" value="{{ $type->id }}" @if($question->questionTypes->where('type_id', $type->id)->count()) checked @endif/><label>{{ $type->name }}</label>
+                @endforeach
+        </div>
+        <div>
             <label>content</label>
             <input type="text" name="content" value="{{ $question->content }}"/>
         </div>

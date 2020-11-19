@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Auth::routes([
-    'login' => false,
+    'login' => true,
     'register' => true,
     'reset' => false,
     'verify' => true
@@ -52,8 +52,9 @@ Route::middleware(['auth', 'verified'])->group(function(){
         Route::post('{answer}/voteCancel', 'AnswerController@voteCancel'); 
     });
     Route::prefix('notifications')->group(function () { 
-        Route::post('{notification}', 'NotificationController@read');
+        Route::get('index', 'NotificationController@showAll');
         Route::post('readAll', 'NotificationController@readAll');
+        Route::post('{notification}', 'NotificationController@read');
     });
 });
 Route::middleware(['auth'])->group(function(){
@@ -88,6 +89,11 @@ Route::get('/forum_view', function (){
 Route::get('/forum_post', function (){
     return view('forum_post');
 });
-Route::get('/sales/{typeId}', 'UserController@sales');
+Route::get('/sales/{user}', 'UserController@show');
+Route::get('/sales/index/{typeId}', 'UserController@sales');
+Route::post('/sales/sendNotice/{user}', 'UserController@sendNotice');
+
 Route::get('/analyze', 'ExpertQuestionController@question');
 Route::post('/analyze', 'ExpertQuestionController@analyze');
+
+Route::get('/expertRecord', 'ExpertRecordController@index');

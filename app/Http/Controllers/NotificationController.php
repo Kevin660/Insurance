@@ -23,9 +23,14 @@ class NotificationController extends Controller
     public function readAll(){
         $user = Auth::user();
         $time = now();
-        $user->notifications()->whereNull('read_time')->each->update([
+        $user->notifications()->whereNull('read_time')->get()->each->update([
             'read_time' => $time,
         ]);
         return true;
+    }
+    public function showAll(){
+        $user = Auth::user();
+        $user->notifications = $user->notifications->whereNull('read_time')->sortByDesc('created_at');
+        return view('backend.notification', compact('user'));
     }
 }

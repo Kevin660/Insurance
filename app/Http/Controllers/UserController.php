@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
 
+use App\Mail\NoticeMail;
 use \App\User;
 use \App\Certification;
 use \App\CertificationType;
@@ -50,6 +52,35 @@ class UserController extends Controller
             ->select('users.*')
             ->get();
         $sales->load('certifications.certificationType');
-        return view('sales', compact('sales'));
+        return view('sales/index', compact('sales'));
+    }
+
+    public function show(User $user){
+        static $roleId = 1;
+        if ($user->role = $roleId && $user->enabled = 1){
+            $sale = $user;
+            $sale->load('certifications.certificationType');
+            return view('sales/show', compact('sale'));
+        }
+        return abort(403, 'Unauthorized action.');
+    }
+
+    public function sendNotice(User $user){
+        static $roleId = 1;
+        $sale = $user;
+        if ($sale->role = $roleId && $sale->enabled == 1){
+            $user = Auth::user();
+            if ($user->email_verified_at){
+                Mail::to($sale)
+                ->send(new NoticeMail($user));
+                $user->expertRecord()->create([
+                    'user_id' => $user->id,
+                    'sale_id' => $sale->id,
+                ]);
+                return true;
+            }
+            
+        }
+        return abort(403, 'Unauthorized action.');
     }
 }
