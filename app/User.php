@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+use App\Notiification, App\ExpertRecord;
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
@@ -16,7 +17,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'role', 'chinese_name', 'birthday', 'gender', 'address', 'serve_area', 'email', 'number_home', 'number_cellphone', 'serve_item', 'serve_experience', 'license', 'other', 'password'
+        'role', 'img', 'company', 'chinese_name', 'birthday', 'gender', 'address', 'serve_area', 'email', 'number_home', 'number_cellphone', 'serve_item', 'serve_experience', 'license', 'introduction', 'other', 'password', 'score', 'enabled', 'email_verified_at'
     ];
 
     /**
@@ -39,5 +40,21 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function questions(){
         return $this->hasMany(Question::class);
+    }
+
+    public function  certifications(){
+        return $this->hasMany(Certification::class);
+    }
+
+    public function scoreHistory(){
+        return $this->hasMany(scoreHistory::class);
+    }
+
+    public function notifications(){
+         return $this->hasMany(Notification::class);
+    }
+
+    public function expertRecords(){
+        return $this->hasMany(ExpertRecord::class);
     }
 }

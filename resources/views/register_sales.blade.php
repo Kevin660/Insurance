@@ -43,7 +43,6 @@
                         <h5 class="mx-auto">註冊</h5>
                         <div class="d-flex flex-column justify-content-center h-100">
 
-                            {{ $errors }}
                             <form method="POST" action="{{ route('register') }}" class="d-flex flex-column justify-content-center  ">
                                 @csrf
                                 <input name="role" type="hidden" value="1">
@@ -82,7 +81,7 @@
                                         @enderror
                                     </div>
                                     <div class="form-group col-3">
-                                        <label for="gender"">性別</label>
+                                        <label for="gender">性別</label>
                                     <select name=" gender" class=" form-control" id="gender">
                                             <option value="1">男</option>
                                             <option value="2">女</option>
@@ -156,32 +155,11 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="serve_item">服務項目</label>
-                                    <input name="serve_item" type="text"
-                                        class="form-control @error('serve_item') is-invalid @enderror"
-                                        id="serve_item">
-                                    @error('serve_item')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
                                     <label for="serve_experience">服務資歷</label>
                                     <input name="serve_experience" type="text"
                                         class="form-control @error('serve_experience') is-invalid @enderror"
                                         id="serve_experience">
                                     @error('serve_experience')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="license">相關證照</label>
-                                    <input name="license" type="text"
-                                        class="form-control @error('license') is-invalid @enderror" id="license">
-                                    @error('license')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

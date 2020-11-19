@@ -1,0 +1,91 @@
+#analyze {
+    height: 90vh;
+}
+
+.angle {
+    font-size: 50px;
+}
+
+/*選項按鈕*/
+
+
+.ex-options > button { 
+    min-height: 100px;
+    flex-basis: 23%;
+    margin:0 1% 20px 1% ;
+
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    border: 2px solid black;
+
+    transition: .2s ;
+}
+
+
+
+.ex-options > button:enabled:hover{ 
+    min-height: 100px;
+    flex-basis: 23%;
+    margin:0 1% 20px 1% ;
+    
+    background-color:#28a745;
+
+    transition: .2s ;
+}
+
+.ex-options > button:disabled{
+    color: #38c172;
+    border-color: #38c172;
+}
+
+.ex-question{
+    display: none;
+}
+.ex-question.actived{
+    display: block;
+}
+.ex-option-selected{
+    color: #fff !important;
+    background-color: #28a745 !important;
+    border-color: #38c172 !important;
+}
+
+@media (max-width:576px) {
+
+    .ex-options > button { 
+        flex-basis: 48%;
+    margin:0 1% 20px 1% ;
+    
+        background-color: rgb(255, 255, 255);
+        color: rgb(0, 0, 0);
+        border: 2px solid black;
+    
+        transition: .2s ;
+    }
+    
+    
+    
+    .ex-options > button:enabled:hover { 
+        min-height: 100px;
+        flex-basis: 48%;
+    margin:0 1% 20px 1% ;
+        
+        background-color:#28a745;
+        color: white;
+        border: 2px solid #28a745;
+    
+        transition: .2s ;
+    }
+    
+    .ex-options > button:disabled{
+        color: #38c172;
+        border-color: #38c172;
+    }
+}
+
+/*分析結果*/
+
+.results {
+    background-color: #e5e5e5;
+    font-size: 20px;
+}

@@ -6,12 +6,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-use App\Question, App\User, App\Type, App\Vote;
+use App\Traits\NotificationHandler;
+use App\Question, \App\QuestionType, App\User, App\Type, App\Vote, App\Answer;
 
 class QuestionController extends Controller
 {
+    use NotificationHandler;
     protected $questionValidation = [
-        'type_id' => 'bail|required|exists:types,id',
+        'type_id' => 'bail|required|array',
         'title' => 'bail|required|max:255',
         'content' => 'bail|required|max:5000',
     ];
@@ -39,7 +41,7 @@ class QuestionController extends Controller
                         ->where('title', 'like', '%'. $data['title'] .'%')
                         ->orderBy($data['order_by'], $data['order_method'])
                         ->get();
-        $questions->load(['user', 'type', 'votes', 'answer']);
+        $questions->load(['user', 'votes', 'answer']);
         return view('questions.index', compact('questions'));
     }
     public function create(){
@@ -49,17 +51,31 @@ class QuestionController extends Controller
 
     public function store(){
         $validator = Validator::make(request()->all(), $this->questionValidation);
+        $validator->after(function ($validator) {
+            $typeId = request()->all()['type_id'];
+            if (Type::find($typeId)->count() != count($typeId) and count($typeId) != 0) {
+                $validator->errors()->add('type_id', 'wrong input!');
+            }
+        });
         if ($validator->fails()) {
             return back()->withErrors($validator)
                          ->withInput();
         }
-
         $user = Auth::user();
         $data = request()->all();
         $data += [
             'user_id' => $user->id
         ];
+        $type_id_list = $data['type_id'];
+        unset($data['type_id']);
         $question = Question::create($data);
+        
+        foreach($type_id_list as $type_id){
+            QuestionType::create([
+                'question_id' => $question->id,
+                'type_id' => $type_id
+            ]);
+        }
         return redirect('questions/index');
     }
     
@@ -67,7 +83,7 @@ class QuestionController extends Controller
     public function edit(Question $question){
         $user = Auth::user();
         if ($user == $question->user && $question->answer == null){
-            $question->load(['user', 'type', 'votes', 'answer']);
+            $question->load(['user', 'votes', 'answer']);
             return view('questions.edit', compact('question'));
         }
         return abort(403, 'Unauthorized action.');
@@ -99,33 +115,39 @@ class QuestionController extends Controller
 
     // answer
     public function answer(Question $question){
+        $user = Auth::user();
+        if ($user->role != 1) return abort(403, 'Unauthorized action.');
         $validator = Validator::make(request()->all(), $this->answerValidation);
+        if ($question->answers()->where('user_id', $user->id)->count() != 0) {
+            $validator->after(function ($validator) {
+                $validator->errors()->add('error_msg', 'you have answer this question.');
+            });
+        }
         if ($validator->fails()) {
             return back()->withErrors($validator)
                          ->withInput();
         }
-
-        $user = Auth::user();
         $data = request()->all();
         $data += [
-            'user_id' => $user->id
+            'user_id' => $user->id,
+            'question_id' => $question->id
         ];
-        $answer = $question->answer()->create($data);
-        return redirect('');
+        $answer = $question->answers()->create($data);
+        $this->addNotification($user, '討論區', '你的發問有新增一筆回答', '/questions/'.$question->id);
+        return true;
     }
     public function accept(Question $question, Answer $answer){
         $user = Auth::user();
-        if ($user == $question->user &&
-            $question  == $answer->question &&
+        if ($user->id == $question->user->id &&
+            $question->id  == $answer->question->id &&
             $question->answer == null){
             $question->update([
-                'answer' => $answer
+                'answer_id' => $answer->id
             ]);  
             return true;
         }
         return false;
     }
-
     // vote
     public function voteUp(Question $question){
         $user = Auth::user();
@@ -167,15 +189,16 @@ class QuestionController extends Controller
         $questions = Question::where('title', 'like', '%'. $data['title'] .'%')
                          ->orderBy($data['order_by'], $data['order_method'])
                          ->get();
-        $questions->load(['user', 'type', 'votes', 'answer']);
-        return view('questions.index', compact('questions'));
+        $questions->load(['user', 'questionTypes.type', 'votes', 'answers']);
+        return view('forum', compact('questions'));//questions.index //forum
     }
 
     public function show(Question $question){
         $question->update([
             'viewCount' => $question->viewCount + 1
         ]);
-        $question->load(['user', 'type', 'votes', 'answer']);
-        return view('questions.show', compact('question'));
+        $user = Auth::user();
+        $question->load(['user', 'questionTypes.type', 'votes', 'answers']);
+        return view('forum_view', compact('question', 'user'));//questions.show
     }
 }
