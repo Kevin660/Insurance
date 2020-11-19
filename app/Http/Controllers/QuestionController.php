@@ -84,7 +84,8 @@ class QuestionController extends Controller
         $user = Auth::user();
         if ($user == $question->user && $question->answer == null){
             $question->load(['user', 'votes', 'answer']);
-            return view('questions.edit', compact('question'));
+            $types = Type::all();
+            return view('questions.edit', compact('question', 'types'));
         }
         return abort(403, 'Unauthorized action.');
     }
@@ -98,8 +99,21 @@ class QuestionController extends Controller
                 return back()->withErrors($validator)
                             ->withInput();
             }
+            $data = request()->all();
+            $data += [
+                'user_id' => $user->id
+            ];
+            $type_id_list = $data['type_id'];
+            unset($data['type_id']);
+            $question->questionTypes()->delete();
+            foreach($type_id_list as $type_id){
+                QuestionType::create([
+                    'question_id' => $question->id,
+                    'type_id' => $type_id
+                ]);
+            }
+            $question->update($data);
 
-            $question->update(request()->all());
             return back()->withInput();
         }
         return abort(403, 'Unauthorized action.');

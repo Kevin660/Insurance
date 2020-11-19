@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Auth::routes([
-    'login' => false,
+    'login' => true,
     'register' => true,
     'reset' => false,
     'verify' => true
