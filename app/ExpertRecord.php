@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 use App\User;
-class expertRecord extends Model
+class ExpertRecord extends Model
 {
     protected $guarded = [];
 
