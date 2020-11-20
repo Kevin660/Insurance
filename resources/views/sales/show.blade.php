@@ -103,7 +103,7 @@
                 </div>
                 <div class="mt-1 mb-1">
                     <div class="text-light bg-dark px-3 py-1" style="display: table-cell;">個人介紹</div>
-                    <div style="text-indent: 2em; ">{{ $sale->introduction }}年</div>
+                    <div style="text-indent: 2em; ">{{ $sale->introduction }}</div>
                 </div>
                 <div class="mt-3">
                     <button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#sendNotice">立即諮詢</button>
