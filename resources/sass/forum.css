@@ -1,0 +1,71 @@
+*{
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+
+#header {
+  background: rgba(0, 0, 0, 0.9);
+  padding: 18px 0;
+}
+
+#search-bar {
+  background: white;
+  top:80px;
+}
+
+ div#forum > div ~ div {
+  border-top: solid 1px #cccccc;
+  padding-top: 5px;
+}
+
+#content {
+  min-height: 300px;
+}
+
+#post {
+  width: 70%;
+}
+
+ul.ckb-tag {
+  list-style: none;
+}
+
+ul.ckb-tag li {
+  display: inline;
+}
+
+ul.ckb-tag li label { /*點擊前樣式*/
+  display: inline-block;
+
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  border: 2px solid black;
+  padding: 5px 15px;
+  border-radius: 25px;
+
+  transition: .2s ease-in-out;
+}
+
+ul.ckb-tag li input[type="checkbox"]:checked + label { /*點擊後樣式*/
+  display: inline-block;
+  
+  background-color: #28a745;
+  color: white;
+  border: 2px solid #28a745;
+  padding: 5px 15px;
+  border-radius: 25px;
+
+  transition: .2s ease-in-out;
+}
+
+ul.ckb-tag li input[type="checkbox"] {
+  display: absolute;
+}
+
+ul.ckb-tag li input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+}
