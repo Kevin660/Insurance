@@ -22,6 +22,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100&display=swap" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="/storage/icofont/icofont.min.css">
+    <script src="https://kit.fontawesome.com/bb7611bdad.js" crossorigin="anonymous"></script>
     @yield('head')
 </head>
 

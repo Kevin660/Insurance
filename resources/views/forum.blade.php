@@ -29,9 +29,8 @@
     <header class="sticky-top">
 
         <div id="header" class="container-fluid">
-            <div class="col-lg-11 mx-auto">
+        <div class="col-lg-11 mx-auto">
                 <nav class="navbar navbar-expand-lg navbar-dark">
-
                     <h1 class="logo mr-auto"><a href="/">保險媒合平台</a></h1>
 
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
@@ -40,14 +39,18 @@
 
                     <div class="collapse navbar-collapse text-right" id="navbarNav">
                         <ul class="navbar-nav nav-menu ml-auto">
-                            <li class="nav-item"> <a class="nav-link" href="#">風險分析</a> </li>
-                            <li class="nav-item"> <a class="nav-link" href="#">找業務員</a> </li>
-                            <li class="nav-item"> <a class="nav-link" href="#">車禍處理專區</a> </li>
+                            <li class="nav-item"> <a class="nav-link" href="/analyze">風險分析</a> </li>
+                            <li class="nav-item"> <a class="nav-link" href="/sales/index/1">找業務員</a> </li>
+                            <li class="nav-item"> <a class="nav-link" href="/sales/index/2">車禍處理專區</a> </li>
                             <li class="nav-item"> <a class="nav-link" href="/forum">討論區</a> </li>
-                            <li class="nav-item"> <a class="nav-link" href="/login">登入</a> </li>
+                            @guest
+                                <li class="nav-item nav-item-green px-2"> <a class="nav-link" href="/login">登入</a> </li>
+                            @endguest
+                            @auth
+                                <li class="nav-item nav-item-green"> <a class="nav-link" href="/home">後台管理</a></li>
+                            @endauth
                         </ul>
                     </div>
-
                 </nav>
             </div>
         </div>
