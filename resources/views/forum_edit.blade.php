@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>發文</title>
+    <title>編輯發問</title>
 
     <!-- CSS only -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -55,11 +55,11 @@
 
     <div class="container">
         <div class="mt-3 my-3 p-3 bg-white rounded shadow d-flex justify-content-center">
-            <form id="post" method="post" action="/questions/store" class="text-center">
+            <form id="post" method="post" action="/questions/{{ $question->id }}" class="text-center">
                 @csrf
                 <div class="my-3 text-left">
                     <label class="h4" for="title">標題</label>
-                    <input name="title" value="{{ old('title') }}" type="text" class="form-control" id="title">
+                    <input name="title" value="{{ $question->title }}" type="text" class="form-control" id="title">
                     @error('title')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -69,7 +69,7 @@
 
                 <div class="my-3 text-left">
                     <label class="h4" for="content">內文</label>
-                    <textarea class="form-control" id="content" name="content" rows="7" form="post"></textarea>
+                    <textarea class="form-control" id="content" name="content" rows="7" form="post">{{ $question->content }}</textarea>
                     @error('content')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -83,7 +83,7 @@
                     <ul class="ckb-tag">
                         @foreach($types as $type)
                         <li>
-                            <input type="checkbox" name="type_id[]" id="{{ $type->id }}" value="{{ $type->id}}">
+                            <input type="checkbox" name="type_id[]" id="{{ $type->id }}" value="{{ $type->id}}" @if($question->questionTypes->where('type_id', $type->id)->count()) checked @endif>
                             <label for="{{ $type->id }}">{{ $type->name }}</label>
                         </li>
                         @endforeach
@@ -94,7 +94,8 @@
                         @enderror
                     </ul>
                 </div>
-                <input type="submit" value="發文" class="btn btn-success mt-3 px-5" />
+
+                <input type="submit" value="修改" class="btn btn-success mt-3 px-5" />
             </form>
         </div>
     </div>

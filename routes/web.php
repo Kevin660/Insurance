@@ -39,7 +39,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
         Route::post('{question}/voteCancel', 'QuestionController@voteCancel'); // 取消投票
         
         Route::post('{question}/answer', 'QuestionController@answer');  // 新增答案
-        Route::post('{question}/accept/{{answer}}', 'QuestionController@accept'); // 設為正解
+        Route::post('{question}/accept/{answer}', 'QuestionController@accept'); // 設為正解
     });
     Route::prefix('answers')->group(function () { 
         Route::get('indexSelf', 'AnswerController@indexSelf'); // with order param

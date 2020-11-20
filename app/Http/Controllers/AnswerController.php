@@ -22,7 +22,7 @@ class AnswerController extends Controller
         $user = Auth::user();
         if ($user == $answer->user){
             $answer->load(['user', 'votes']);
-            return view('answers.edit', compact('answer'));
+            return view('forum_edit_anwser', compact('answer'));
         }
         return abort(403, 'Unauthorized action.');
     }

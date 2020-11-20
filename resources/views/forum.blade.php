@@ -11,7 +11,6 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- JS, Popper.js, and jQuery -->
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/main.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
         crossorigin="anonymous"></script>
@@ -22,6 +21,7 @@
     <link href="/css/style.css" rel="stylesheet">
     <link href="/css/forum.css" rel="stylesheet">
     <link rel="stylesheet" href="/storage/icofont/icofont.min.css">
+    <script src="https://kit.fontawesome.com/bb7611bdad.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -54,32 +54,44 @@
 
         <div id="search-bar" class="container-fluid py-3">
             <div class="container sticky-top">
-                <form method="POST" action="#">
+                <form action="/questions/index" method="get">
                     <div class="form-row">
-                        <div class="col-md-2 col-3">
-                            <select class="custom-select form-control">
-                                <option selected>所有標籤</option>
-                                <?php
-                        $catelog=array('醫療險','健康險','意外險','壽險','車險','企業保險','火險','水險','車禍','理賠','投保','失能');
-                        foreach($catelog as $value) {                             
-                        echo "<option value='$value'>". $value ."</option>";                         
-                        }
-                        ?>
+                        <div class="col-lg-2 col-3">
+                            <select class="custom-select form-control" name="type" id="type">
+                                <option value="all">所有分類</option>
+                                @foreach($types as $type)
+                                <option value="{{ $type->id }}">{{ $type-> name}}</option>
+                                @endforeach
                             </select>
                         </div>
-                        <div class="col-md-6 col-9">
-                            <input type="text" class="form-control" id="" placeholder="search...">
+                        <div class="col-lg-2 col-3">
+                            <select class="custom-select form-control" id="order" name="order">
+                                <option value="1">最新發問</option>
+                                <option value="2">最舊發問</option>
+                                <option value="3">最近更新</option>
+                                <option value="4">最多觀看</option>
+                            </select>
                         </div>
-                        <div class="col-md-2 col-6 mt-2 mt-md-0">
-                            <button class="form-control btn btn-success f-btn">我要發文</button>
+                        <div class="col-lg-6 col-6 input-group">
+                            <input type="text" class="form-control" id="search_title" name="search_title"
+                                placeholder="搜尋問題 ...">
+                            <div class="input-group-append">
+                                <button id="search-button" type="submit" class="btn form-control">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
                         </div>
-                        <div class="col-md-2 col-6 mt-2 mt-md-0">
-                            <button class="form-control btn btn-outline-success f-btn">我的貼文</button>
-                        </div>
-
-                    </div>
                 </form>
+                <div class="col-lg-1 col-6 mt-2 mt-lg-0">
+                    <a class="form-control btn btn-success f-btn" href="/questions/create">我要發文</a>
+                </div>
+                <div class="col-lg-1 col-6 mt-2 mt-lg-0">
+                    <a class="form-control btn btn-outline-success f-btn" href="/questions/indexSelf">我的貼文</a>
+                </div>
+
             </div>
+            </form>
+        </div>
         </div>
 
     </header>
@@ -88,47 +100,40 @@
 
     <div class="container">
         <div id="forum" class="my-3 pb-3 pl-3 pr-3 bg-white rounded shadow">
-        @foreach($questions as $question)
-        <div class="d-flex flex-column p-3">
-        
+            @foreach($questions as $question)
+            <div class="d-flex flex-column p-3" style="transform: rotate(0);">
+                <a href="/questions/{{$question->id}}" class="stretched-link"></a>
                 <div>
-                    <img class="rounded-circle m-1" src="https://picsum.photos/40">
-                    <span class="mr-auto"><a href="#">{{$question->user->chinese_name}}</a></span>
+                    <img class="rounded-circle m-1" src="/storage/img/user/{{ $question->user->img }}" style="height:40px;width:40px">
+                    <span class="mr-auto">{{ $question-> user -> chinese_name}}</span>
+
                 </div>
-                <h3>{{$question->title}}</h3>
-                <p>{{$question->content}}</p>
+                <div class="d-flex">
+                    <h3>{{ $question-> title}}</h3>
+                    <p class="ml-2">
+                        @if($question->answer == null)
+                        <i class="badge badge-danger">未解決</i>
+                        @else
+                        <i class="badge badge-success">已解決</i>
+                        @endif
+                    </p>
+                </div>
+
+
+                <p>{{ $question-> content}}</p>
                 <div class="d-flex justify-content-between">
                     <div class="mr-auto">
-                    @foreach($question->questionTypes as $question_type)
-                            <a href="#" class="badge badge-secondary">{{ $question_type->type->name}}</a>
+                        @foreach($question->questionTypes as $question_type)
+                        <a href="#" class="badge badge-secondary">{{ $question_type-> type -> name}}</a>
                         @endforeach
                     </div>
-                    
-
-                    <small class="p-1">評價<span class="p-1">{{ $question->votes()->sum('count') }}</span> </small>
-                    <small class="p-1">回答<span class="p-1">0</span> </small>
-                    <small class="p-1">{{$question->created_at}}</small>
+                    <small class="p-1">評價<span class="p-1">{{ $question-> votes() -> sum('count')}}</span> </small>
+                    <small class="p-1">回答<span class="p-1">{{ $question-> answers() -> count()}}</span> </small>
+                    <small class="p-1">觀看數<span class="p-1">{{ $question->viewCount}}</span> </small>
+                    <small class="p-1">{{ $question-> created_at}}</small>
                 </div>
             </div>
-        @endforeach
-
-            <!-- <div class="d-flex flex-column p-3">
-                <div>
-                    <img class="rounded-circle m-1" src="https://picsum.photos/40">
-                    <span class="mr-auto"><a href="#">uploader</a></span>
-                </div>
-                <h3>花蓮宅配伴手禮推薦買啥？花蓮縣餅有適合送長輩的嗎？</h3>
-                <p>關於花蓮宅配伴手禮推薦版上有人有想法嗎？現在我還不太敢去人多的地方趴趴走，但還是要挑伴手禮給長輩，甜的鹹的其實都可以，口味獨特的也能推薦，麻煩大家分享給我知道了！</p>
-                <div class="d-flex justify-content-between">
-                    <div class="mr-auto">
-                        <a href="#" class="badge badge-secondary">意外險</a>
-                        <a href="#" class="badge badge-secondary">車禍</a>
-                    </div>
-                    <small class="p-1">評價<span class="p-1">0</span> </small>
-                    <small class="p-1">回答<span class="p-1">0</span> </small>
-                    <small class="p-1">今天 00:00</small>
-                </div>
-            </div> -->
+            @endforeach
         </div>
 
     </div>
@@ -171,7 +176,6 @@
         </div>
 
     </footer>
-
 
 
 </body>
