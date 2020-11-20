@@ -73,7 +73,7 @@ class UserController extends Controller
             if ($user->email_verified_at){
                 Mail::to($sale)
                 ->send(new NoticeMail($user));
-                $user->expertRecord()->create([
+                $user->expertRecords()->create([
                     'user_id' => $user->id,
                     'sale_id' => $sale->id,
                 ]);
