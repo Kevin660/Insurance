@@ -7,7 +7,11 @@
 <script src="https://kit.fontawesome.com/bb7611bdad.js" crossorigin="anonymous"></script>
 @endsection
 @section('content')
-
+    <div class="modal fade" data-backdrop="static" data-keyboard="false" id="msg" tabindex="-1"  aria-hidden="true" data-dismiss="modal">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div id="msg-text" class="alert alert-success">正在風險分析</div>
+        </div>
+    </div>
     <!-- 專家系統 -->
     
     @isset($questions)
@@ -40,9 +44,6 @@
                     </div>
                 </div>
                 @endforeach
-            <div class="col-2 m-auto text-center" style="display: none;">
-                <button class="form-control btn btn-success f-btn" type="submit">查看結果</button>
-            </div>
             <div class="col-2 m-auto text-center">
                 <a href="#" class="ex-next">
                     <i class="fas fa-angle-double-right angle"></i>

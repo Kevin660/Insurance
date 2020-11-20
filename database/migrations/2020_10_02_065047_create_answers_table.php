@@ -55,7 +55,7 @@ class CreateAnswersTable extends Migration
             [
                 'id' => 6,
                 'question_id' => 3,
-                'user_id' => 2,
+                'user_id' => 3,
                 'content' => '員工工作中受傷，雇主要投保雇主意外責任險及雇主補償契約責任險才能移轉風險',
             ],
         ];

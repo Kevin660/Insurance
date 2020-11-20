@@ -42,7 +42,7 @@ $(document).ready(function () {
     });
 
     function analyze(){
-        if (!confirm("開始風險分析")) return false;
+        $("#msg").modal('show');
         const form = document.createElement('form');
         form.method = 'post';
         form.action = '/analyze';

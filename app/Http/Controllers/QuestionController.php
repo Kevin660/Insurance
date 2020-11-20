@@ -24,6 +24,7 @@ class QuestionController extends Controller
         'order_by' => 'in:created_at,updated_at,viewCount',
         'order_method' => 'in:asc,desc',
         'title' => 'max:255',
+        'type_id' => 'nullable|exists:types,id',
     ];
 
     public function __construct(){}
@@ -32,16 +33,45 @@ class QuestionController extends Controller
         $validator = Validator::make(request()->all(), $this->indexValidation);
         if ($validator->fails()) abort(403);
         $data = request()->all();
-        $data['order_by'] = $data['order_by'] ?? 'created_at';
-        $data['order_method'] = $data['order_method'] ?? 'desc';
-        $data['title'] = $data['title'] ?? '';
-        
+        switch($data['order'] ?? '1' ) {
+            case '1':
+                $order_by='created_at';
+                $order_method='desc';
+                break;
+            case '2':
+                $order_by='created_at';
+                $order_method='asc';
+                break;
+            case '3':
+                $order_by='updated_at';
+                $order_method='desc';
+                break;
+            case '4':
+                $order_by='viewCount';
+                $order_method='desc';
+                 break;
+            default:
+                $order_by='created_at';
+                $order_method='desc';
+        break;
+        }
+        $data['order_by']= $order_by ?? 'created_at' ;
+        $data['order_method']= $order_method ?? 'desc' ;
+        $data['title'] = $data['search_title'] ?? '';
         $user = Auth::user();
         $types = Type::all();
-        $questions = Question::where('user_id', $user->id)
-                        ->where('title', 'like', '%'. $data['title'] .'%')
-                        ->orderBy($data['order_by'], $data['order_method'])
-                        ->get();
+        if ($data['type_id'] ?? 0){
+            $questions = Question::where('user_id', $user->id)
+                                ->whereHas('questionTypes', function($q) use($data){ $q->where('type_id', $data['type_id']);})
+                                ->where('title', 'like', '%'. $data['title'] .'%')
+                                ->orderBy($data['order_by'], $data['order_method'])
+                                ->get();
+        }else{
+            $questions = Question::where('user_id', $user->id)
+                                ->where('title', 'like', '%'. $data['title'] .'%')
+                                ->orderBy($data['order_by'], $data['order_method'])
+                                ->get();
+        }
         $questions->load(['user', 'questionTypes.type', 'votes', 'answer']);
         return view('forum', compact('questions','types')); //forum
     }
@@ -124,8 +154,9 @@ class QuestionController extends Controller
         $user = Auth::user();
         if ($user == $question->user && $question->answer == null){
             $question->delete();
+            return true;
         }
-        return back()->withInput();
+        return false;
     }
 
     // answer
@@ -223,13 +254,18 @@ class QuestionController extends Controller
         $data['order_by']= $order_by ?? 'created_at' ;
         $data['order_method']= $order_method ?? 'desc' ;
         $data['title'] = $data['search_title'] ?? '';
-        
-        $questions = Question::where('title', 'like', '%'. $data['title'] .'%')
-                         ->orderBy($data['order_by'], $data['order_method'])
-                         ->get();
-        $questions->load(['user', 'questionTypes.type', 'votes', 'answers']);
         $types = Type::all();
-        $types = User::all();
+        if ($data['type_id'] ?? 0){
+            $questions = Question::where('title', 'like', '%'. $data['title'] .'%')
+                                ->whereHas('questionTypes', function($q) use($data){ $q->where('type_id', $data['type_id']);})
+                                ->orderBy($data['order_by'], $data['order_method'])
+                                ->get();
+        }else{
+            $questions = Question::where('title', 'like', '%'. $data['title'] .'%')
+                                ->orderBy($data['order_by'], $data['order_method'])
+                                ->get();
+        }            
+        $questions->load(['user', 'questionTypes.type', 'votes', 'answers']);
         return view('forum', compact('questions','types'));//questions.index //forum
     }
 

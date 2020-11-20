@@ -1,5 +1,5 @@
 @extends('layouts.front')
-@section('title') {{ env('APP_NAME') }}－登入 @endsection
+@section('title') {{ env('APP_NAME') }}－討論區 @endsection
 @section('head')
 <link href="/css/forum.css" rel="stylesheet">
 <script>
@@ -32,7 +32,12 @@
                 },
                 success: function (e) {
                     location.reload();
+                },
+                error: function (e) {
+                    console.log(e.responseText);
+                    if (e.status == 401) location.href = "/login";
                 }
+                    
             });
         }
         function accept_answer(q_id, a_id) {
@@ -65,7 +70,7 @@
                 alert('發生錯誤');
             },
             complete: function(){
-                location.reload();
+                window.location=document.referrer;
             }
             
         });
@@ -73,7 +78,7 @@
     function answerDelete(id){
         if (!confirm('確定刪除?')) return false;
         $.ajax({
-            'url': '/answer/' + id,
+            'url': '/answers/' + id,
             'method': 'post',
             'data':{
                 '_method': 'delete',
@@ -96,9 +101,6 @@
     </script>
 @endsection
 @section('content')
-
-    
-
     <div class="container">
         <!-- 作者 -->
         <div class="mt-3 my-3 p-3 bg-white rounded shadow">
@@ -198,7 +200,6 @@
 </div>  @endif
                         </div>
                         <p>{{$answer->content}}</p>
-
                         <div class="d-flex justify-content-between mt-auto">
                             <div class="mr-auto">
                                 @php ($myVote = $user ? $answer->votes->where('user_id', $user->id)->first() : null)
@@ -230,9 +231,9 @@
                 <h4>回答問題</h4>
                 <div class="d-flex flex-column align-items-end">
                     <textarea class="answer_content form-control" name="content" rows="4"
-                        placeholder="輸入回答 ..."></textarea>
-                    <input type="button" class="btn btn-success mt-3 px-5"
-                        onclick="answer_question({{ $question->id }}, this);" value="提交" />
+                        placeholder="輸入回答 ..." @guest disabled @endguest></textarea>
+                    <input type="button" class="btn btn-success mt-3 px-5" @guest disabled @endguest
+                        onclick="answer_question({{ $question->id }}, this);" value="@guest 請先登入 @endguest @auth 提交 @endauth" />
                 </div>
             </div>
         </div>

@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-
 @extends('layouts.front')
 @section('title') {{ env('APP_NAME') }}－發問 @endsection
 @section('head')
 <link href="/css/forum.css" rel="stylesheet">
+<script>
+$(document).ready(function(){
+    $("#post input[type='checkbox']").change(function(){
+        $("#post input[type='submit']").prop('disabled', $("#post input[type='checkbox']:checked").length==0);
+    });
+    $("#post input[type='checkbox']:eq(0)").trigger('change');
+})
+</script>
 @endsection
 @section('content')
     <div class="container">
@@ -13,7 +18,7 @@
                 @csrf
                 <div class="my-3 text-left">
                     <label class="h4" for="title">標題</label>
-                    <input name="title" value="{{ old('title') }}" type="text" class="form-control" id="title">
+                    <input name="title" value="{{ old('title') }}" type="text" class="form-control" id="title" required>
                     @error('title')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -23,7 +28,7 @@
 
                 <div class="my-3 text-left">
                     <label class="h4" for="content">內文</label>
-                    <textarea class="form-control" id="content" name="content" rows="7" form="post"></textarea>
+                    <textarea class="form-control" id="content" name="content" rows="7" form="post" required></textarea>
                     @error('content')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>

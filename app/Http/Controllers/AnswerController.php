@@ -38,15 +38,18 @@ class AnswerController extends Controller
             }
             $answer->update(request()->all());        
             $this->addNotification($answer->question->user, '討論區', '你的發問有更新一筆回答', '/questions/'.$answer->question->id.'#answer-'.$answer->id);
-            return back()->withInput();
+            return redirect('/questions/'.$answer->question->id);
         }
         return abort(403, 'Unauthorized action.');
     }
 
     public function destroy(Answer $answer){
         $user = Auth::user();
-        if ($user == $answer->user && $answer->question->answer == null) $answer->delete();
-        return back()->withInput();
+        if ($user == $answer->user && $answer->question->answer == null) {
+            $answer->delete();
+            return true;
+        }
+        return false;
     }
 
 
