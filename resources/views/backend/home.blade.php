@@ -123,8 +123,8 @@
                                         <div class="text-light bg-dark px-3 py-1" style="display: table-cell;">諮詢時間</div>
                                         <div style="text-indent: 2em; ">{{ $user->expertRecord->created_at }}</div>
                                     </div>
-                                    <div style="position: absolute; bottom: 0">
-                                        <a class="btn btn-primary" style="width: 200px" href="/sales/{{ $user->expertRecord->sale->id }}">個人資料</a>
+                                    <div style="position: absolute; bottom: 0; width: 85%;">
+                                        <a class="btn btn-primary btn-block" href="/sales/{{ $user->expertRecord->sale->id }}">個人資料</a>
                                     </div>
                                 </div>                                    
                                 @endif
