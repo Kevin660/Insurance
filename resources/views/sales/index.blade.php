@@ -6,10 +6,10 @@
         
        <!-- 一張名片 -->
         @foreach($sales as $sale)
-            <div class="col-12 col-md-4 p2 mt-2">
+            <div class="col-12 col-md-4 p2 mt-5">
                 <div class="box-content">
                     <div>
-                        <img src="/storage/img/user/{{ $sale->img }}" alt="" class="img-fluid d-block m-auto w-50">
+                        <img src="/storage/img/user/{{ $sale->img ? $sale->img : 'no_img.jpg' }}" alt="" class="img-fluid d-block m-auto w-50">
                     </div>
                     <div class="mt-1 mb-1 text-center">
                         <h3>{{ $sale->chinese_name }}－{{ $sale->company }}</h3>

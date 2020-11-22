@@ -87,7 +87,7 @@
                                 @if($user->expertRecord)
                                 <div class="col-6 text-center">
                                     <a href="/sales/{{ $user->expertRecord->sale->id }}">
-                                        <img src="/storage/img/user/{{ $user->expertRecord->sale->img }}" style="max-height: 200px"/>
+                                        <img src="/storage/img/user/{{ $user->expertRecord->sale->img ? $user->expertRecord->sale->img : 'no_img.jpg' }}" style="max-height: 200px"/>
                                     </a>
                                     <div class="mt-2 mb-2">
                                         <div style='display:table; margin:auto; width: 120px; height: 30px;'>

@@ -23,26 +23,32 @@ class CreateCertificationTypesTable extends Migration
          // init_data
         $data = [
             [
+                'id' => 1,
                 'type' => 1,
                 'name' => '人身保險業務員證照',
             ],
             [
+                'id' => 2,
                 'type' => 1,
                 'name' => '財產保險業務員證照',
             ],
             [
+                'id' => 3,
                 'type' => 0,
                 'name' => '投資型保險商品業務員證照',
             ],
             [
+                'id' => 4,
                 'type' => 0,
                 'name' => '外幣收付非投資型保險證照',
             ],
             [
+                'id' => 5,
                 'type' => 2,
                 'name' => '人身保險經紀人',
             ],
             [
+                'id' => 6,
                 'type' => 2,
                 'name' => '財產保險經紀人',
             ]

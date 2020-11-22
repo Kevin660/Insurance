@@ -60,7 +60,7 @@
             <div class="d-flex flex-column p-3" style="transform: rotate(0);">
                 <a href="/questions/{{$question->id}}" class="stretched-link"></a>
                 <div>
-                    <img class="rounded-circle m-1" src="/storage/img/user/{{ $question->user->img }}" style="height:40px;width:40px">
+                    <img class="rounded-circle m-1" src="/storage/img/user/{{ $question->user->img ? $question->user->img : 'no_img.jpg' }}" style="height:40px;width:40px">
                     <span class="mr-auto">{{ $question-> user -> chinese_name}}</span>
 
                 </div>

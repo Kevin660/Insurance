@@ -61,7 +61,7 @@
             <div class="col-md-4 p2 mt-2">
                 <div class="box-content">
                     <div>
-                        <img src="/storage/img/user/{{ $sale->img }}" alt="" class="img-fluid d-block m-auto w-50">
+                        <img src="/storage/img/user/{{ $sale->img ? $sale->img : 'no_img.jpg' }}" alt="" class="img-fluid d-block m-auto w-50">
                     </div>
                     <div class="mt-2 mb-2 text-center">
                         <div style='display:table; margin:auto; width: 120px; height: 30px;'>

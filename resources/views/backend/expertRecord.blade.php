@@ -16,7 +16,7 @@
                             <div class="card-text my-3 row" style="height: 300px">
                                 <div class="col-6 text-center">
                                     <a href="/sales/{{ $record->sale->id }}">
-                                        <img src="/storage/img/user/{{ $record->sale->img }}" style="max-height: 200px"/>
+                                        <img src="/storage/img/user/{{ $record->sale->img ? $record->sale->img : 'no_img.jpg' }}" style="max-height: 200px"/>
                                     </a>
                                     <div class="mt-2 mb-2">
                                         <div style='display:table; margin:auto; width: 120px; height: 30px;'>
