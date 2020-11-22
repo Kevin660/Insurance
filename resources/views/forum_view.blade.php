@@ -106,7 +106,7 @@
         <div class="mt-3 my-3 p-3 bg-white rounded shadow">
             <div class="row">
                 <div class="col-3 text-center">
-                    <img class="rounded-circle" src="/storage/img/user/{{ $question->user->img ? $question->user->img : 'no_img.jpg' }}" style="height:150px;width:150px">
+                    <img class="rounded-circle" src="/storage/img/user/{{ $question->user->img ? $question->user->img : 'no_img.jpg' }}">
                     <p class="p-2"><a href="#">{{$question->user->chinese_name}}</a></p>
                 </div>
                 <div class="col-9 d-flex flex-column">
@@ -175,7 +175,7 @@
                 <div class="row">
 
                     <div class="col-3 text-center">
-                        <img class="rounded-circle" src="/storage/img/user/{{ $answer->user->img ? $answer->user->img : 'no_img.jpg' }}" style="height:150px;width:150px">
+                        <img class="rounded-circle" src="/storage/img/user/{{ $answer->user->img ? $answer->user->img : 'no_img.jpg' }}">
                         <p class="mr-auto"><a href="#">{{$answer->user->chinese_name}}</a></p>
                     </div>
 
