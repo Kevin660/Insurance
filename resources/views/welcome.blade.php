@@ -41,10 +41,10 @@
                             <li class="nav-item"> <a class="nav-link" href="/sales/index/2">車禍處理專區</a> </li>
                             <li class="nav-item"> <a class="nav-link" href="/forum">討論區</a> </li>
                             @guest
-                                <li class="nav-item nav-item-green px-2"> <a class="nav-link" href="/login">登入</a> </li>
+                                <li class="nav-item nav-item-green px-2 ml-auto"> <a class="nav-link" href="/login">登入</a> </li>
                             @endguest
                             @auth
-                                <li class="nav-item nav-item-green"> <a class="nav-link" href="/home">後台管理</a></li>
+                                <li class="nav-item nav-item-green ml-auto"> <a class="nav-link" href="/home">後台管理</a></li>
                             @endauth
                         </ul>
                     </div>
