@@ -72,7 +72,7 @@ class CreateUsersTable extends Migration
                 'company' => '晨星保經',
                 'chinese_name' => '林小彤',
                 'birthday' => '1990-09-30',
-                'gender' => '1',
+                'gender' => '2',
                 'address' => '雲林縣斗六市大學路3段123號',
                 'email' => 'B10623058@yuntech.edu.tw',
                 'number_home' => '055776666',

@@ -56,6 +56,9 @@ Route::middleware(['auth', 'verified'])->group(function(){
         Route::post('readAll', 'NotificationController@readAll');
         Route::post('{notification}', 'NotificationController@read');
     });
+    
+    Route::get('/sales/sendNotice/{user}', 'UserController@sendNotice');
+    Route::get('/expertRecord', 'ExpertRecordController@index');
 });
 Route::middleware(['auth'])->group(function(){
     Route::get('/user', 'UserController@indexSelf')->name('user');
@@ -91,9 +94,8 @@ Route::get('/forum_post', function (){
 });
 Route::get('/sales/{user}', 'UserController@show');
 Route::get('/sales/index/{typeId}', 'UserController@sales');
-Route::post('/sales/sendNotice/{user}', 'UserController@sendNotice');
 
 Route::get('/analyze', 'ExpertQuestionController@question');
 Route::post('/analyze', 'ExpertQuestionController@analyze');
 
-Route::get('/expertRecord', 'ExpertRecordController@index');
+

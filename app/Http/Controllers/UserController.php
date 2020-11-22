@@ -50,6 +50,7 @@ class UserController extends Controller
             ->groupBy('certifications.user_id')
             ->havingRaw('count(*) = ?', [$certificationTypes->count()])
             ->select('users.*')
+            ->orderByDesc('users.score')
             ->get();
         $sales->load('certifications.certificationType');
         return view('sales/index', compact('sales'));
@@ -73,7 +74,7 @@ class UserController extends Controller
             if ($user->email_verified_at){
                 Mail::to($sale)
                 ->send(new NoticeMail($user));
-                $user->expertRecord()->create([
+                $user->expertRecords()->create([
                     'user_id' => $user->id,
                     'sale_id' => $sale->id,
                 ]);

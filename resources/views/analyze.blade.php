@@ -17,7 +17,7 @@
     @isset($questions)
     <div id="analyze" class="container-fluid ">
         <div class="row h-100">
-            <div class="col-2 m-auto text-center">
+            <div class="col-2 m-auto text-center p-0">
                 <a href="#" class="ex-prev">
                     <i class="fas fa-angle-double-left angle"></i>
                     <p> 上一步 </p>
@@ -44,7 +44,7 @@
                     </div>
                 </div>
                 @endforeach
-            <div class="col-2 m-auto text-center">
+            <div class="col-2 m-auto text-center p-0">
                 <a href="#" class="ex-next">
                     <i class="fas fa-angle-double-right angle"></i>
                     <p>下一步</p>

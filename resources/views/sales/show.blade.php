@@ -106,7 +106,7 @@
                     <div style="text-indent: 2em; ">{{ $sale->introduction }}</div>
                 </div>
                 <div class="mt-3">
-                    <button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#sendNotice">立即諮詢</button>
+                    <button type="button" class="btn btn-success btn-lg btn-block" data-target="#sendNotice" @guest onclick="location.href='/login'" @endguest @auth @if(Auth::user()->email_verified_at) data-toggle="modal" @else onclick="location.href='/email/verify'" @endif @endauth>立即諮詢</button>
                 </div>
             </div>
         </div>

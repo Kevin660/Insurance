@@ -188,10 +188,10 @@
         <div class="container">
             <div class="row">
 
-                <div class="col-8 col-lg-3 col-md-4">
+                <div class="col-12 col-lg-3 col-md-4">
                     <h3 class="logo">保險媒合平台</h3>
                 </div>
-                <div class="col-4 col-lg-3 col-md-4">
+                <div class="col-12 col-lg-3 col-md-4 text-center">
                     <img src="/storage/img/qrcode.png"/>
                 </div>
                 <div class="col-12 col-lg-3 col-md-4 my-3 my-md-0 footer-links d-flex align-items-center">
