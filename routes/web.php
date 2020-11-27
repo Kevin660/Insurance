@@ -57,7 +57,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
         Route::post('{notification}', 'NotificationController@read');
     });
     
-    Route::get('/sales/sendNotice/{user}', 'UserController@sendNotice');
+    Route::post('/sales/sendNotice/{user}', 'UserController@sendNotice');
     Route::get('/expertRecord', 'ExpertRecordController@index');
 });
 Route::middleware(['auth'])->group(function(){

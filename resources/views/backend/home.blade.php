@@ -203,8 +203,10 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                                                    @if($question->answer == null)
                                                     <button type="button" class="btn btn-danger" onclick="questionDelete({{$question->id}})">刪除</button>
                                                     <button type="button" class="btn btn-primary" onclick="location.href='/questions/{{ $question->id }}/edit';">編輯</button>
+                                                    @endif
                                                     <button type="button" class="btn btn-success" onclick="location.href='/questions/{{ $question->id }}';">前往</button>
                                                 </div>
                                                 </div>

@@ -47,7 +47,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function scoreHistory(){
-        return $this->hasMany(scoreHistory::class);
+        return $this->hasMany(ScoreHistory::class);
     }
 
     public function notifications(){

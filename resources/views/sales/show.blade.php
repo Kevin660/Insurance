@@ -3,7 +3,7 @@
 @section('head')
 <script>
     function sendNotice(id){
-        $("#sendNotice").modal('hide');
+        $("#sendNotice .btn-submit").prop('disabled', true);
         $.ajax({
             'url': '/sales/sendNotice/' + id,
             'method': 'post',
@@ -21,6 +21,8 @@
                 $("#msg #msg-text").addClass('alert alert-danger');
             },
             complete: function(){
+                $("#sendNotice").modal('hide');
+                $("#sendNotice .btn-submit").prop('disabled', false);
                 $("#msg").modal('show');
             }
             
@@ -44,7 +46,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-success" onclick="sendNotice({{ $sale->id }})">同意送出</button>
+                <button type="button" class="btn btn-success btn-submit" onclick="sendNotice({{ $sale->id }})">同意送出</button>
             </div>
             </div>
         </div>

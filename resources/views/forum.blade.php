@@ -76,7 +76,7 @@
                 </div>
 
 
-                <p>{{ $question-> content}}</p>
+                <p>{{ Str::limit($question-> content, 120)}}</p>
                 <div class="d-flex justify-content-between">
                     <div class="mr-auto">
                         @foreach($question->questionTypes as $question_type)
